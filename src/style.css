@@ -71,7 +71,7 @@ body {
 .navbar {
   position: fixed;
   top: 0;
-  width: 100%;
+  width: auto;
   padding: 80px 8%;
   display: flex;
   justify-content: space-between;
