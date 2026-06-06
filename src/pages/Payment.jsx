@@ -32,7 +32,7 @@ function Payment() {
 
     const options = {
 
-      key: "YOUR_RAZORPAY_KEY",
+      key: "rzp_test_SyICPPjLwUrkbL",
 
       amount: Math.round(Number(finalTotal) * 100),
 
