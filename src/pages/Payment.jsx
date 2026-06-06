@@ -36,39 +36,30 @@ function Payment() {
   
     const amount = Math.round(Number(finalTotal) * 100);
   
-    console.log("Final Total:", finalTotal);
-    console.log("Amount:", amount);
-  
     if (!amount || amount <= 0) {
-      alert("Invalid payment amount");
+      alert("Invalid amount");
       return;
     }
   
     const options = {
   
-      
+      key: "PASTE_YOUR_LATEST_TEST_KEY",
   
-      amount:Math.round(Number(finalTotal)*100),
+      amount: amount,
   
       currency: "INR",
   
       name: "Fitnexis",
   
-      description: "Premium Supplement Order",
+      description: "Order Payment",
   
-      handler: function (response) {
+      handler: async function (response) {
   
-        console.log("PAYMENT SUCCESS:", response);
+        console.log(response);
   
         alert("Payment Successful!");
   
         navigate("/success");
-      },
-  
-      prefill: {
-        name: billing?.name || "",
-        contact: billing?.phone || "",
-        email: "",
       },
   
       theme: {
@@ -78,17 +69,9 @@ function Payment() {
   
     const razorpay = new window.Razorpay(options);
   
-    razorpay.on("payment.failed", function (response) {
-  
-      console.log("PAYMENT FAILED:", response);
-  
-      alert(response.error.description);
-    });
-    key: "rzp_live_SyICPPjLwUrkbL",
-  
     razorpay.open();
   };
-
+  
   return (
 
     <div className="payment-page">
