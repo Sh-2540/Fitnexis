@@ -46,7 +46,7 @@ function Payment() {
   
     const options = {
   
-      key: "rzp_live_SyICPPjLwUrkbL",
+      
   
       amount:Math.round(Number(finalTotal)*100),
   
@@ -84,6 +84,7 @@ function Payment() {
   
       alert(response.error.description);
     });
+    key: "rzp_live_SyICPPjLwUrkbL",
   
     razorpay.open();
   };
