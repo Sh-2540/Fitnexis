@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -14,3 +15,7 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+=======
+# Fitnexis
+Modern premium ecommerce supplement store built using React, Vite, and Razorpay integration. Features include cart system, Amazon-style checkout flow, dynamic shipping calculation, billing system, coupon support, and responsive premium UI.
+>>>>>>> 61ace2afd3ac708f50f57339551ab70ea200fe31
