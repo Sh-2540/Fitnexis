@@ -43,7 +43,7 @@ function Payment() {
   
     const options = {
   
-      key: "PASTE_YOUR_LATEST_TEST_KEY",
+      key: "rzp_test_SyICPPjLwUrkbL",
   
       amount: amount,
   
