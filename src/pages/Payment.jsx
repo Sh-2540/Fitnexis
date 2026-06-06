@@ -43,37 +43,33 @@ function Payment() {
       alert("Invalid amount");
       return;
     }
-  
-    const options = {
-  
-      key: "rzp_test_SyICPPjLwUrkbL",
-  
-      amount: amount,
-  
-      currency: "INR",
-  
-      name: "Fitnexis",
-  
-      description: "Order Payment",
-  
-      handler: async function (response) {
-  
-        console.log(response);
-  
-        alert("Payment Successful!");
-  
-        navigate("/success");
-      },
-  
-      theme: {
-        color: "#ff7a00",
-      },
+    const handlePayment = () => {
+
+      const options = {
+    
+        key: "rzp_test_SyICPPjLwUrkbL",
+    
+        amount: 50000,
+    
+        currency: "INR",
+    
+        name: "Fitnexis",
+    
+        description: "Test Payment",
+    
+        handler: function (response) {
+    
+          alert("Payment Successful");
+    
+          console.log(response);
+        }
+      };
+    
+      const razorpay = new window.Razorpay(options);
+    
+      razorpay.open();
     };
-  
-    const razorpay = new window.Razorpay(options);
-  
-    razorpay.open();
-  };
+  }
   
   return (
 
@@ -236,5 +232,6 @@ function Payment() {
 
   );
 }
+
 
 export default Payment;
