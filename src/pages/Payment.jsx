@@ -46,7 +46,7 @@ function Payment() {
   
     const options = {
   
-      key: "rzp_test_SyHmMT2mvr0CIk",
+      key: "rzp_test_SyICPPjLwUrkbL",
   
       amount: amount,
   
