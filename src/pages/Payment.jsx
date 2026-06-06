@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -26,210 +26,124 @@ function Payment() {
     finalTotal = 0
   } = billing;
 
-  // PAYMENT
+  // LOAD RAZORPAY SCRIPT
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
+  // PAYMENT HANDLER
   const handlePayment = () => {
-   
+
+    if (!window.Razorpay) {
+      alert("Razorpay SDK not loaded");
+      return;
+    }
+
+    const amount = Math.round(Number(finalTotal || 0) * 100);
+
+    if (amount <= 0) {
+      alert("Invalid amount");
+      return;
+    }
+
     const options = {
 
       key: "rzp_test_SyICPPjLwUrkbL",
 
-      amount: Math.round(Number(finalTotal) * 100),
-
+      amount: amount,
       currency: "INR",
 
-      name: "Quicknexis",
-
-      description: "Secure Payment",
+      name: "Fitnexis",
+      description: "Secure Order Payment",
 
       image: "/logo.png",
 
       handler: function (response) {
+
+        console.log("Payment Success:", response);
 
         localStorage.setItem(
           "payment",
           JSON.stringify(response)
         );
 
-        alert("Payment Successful");
+        alert("Payment Successful!");
 
         navigate("/success");
       },
 
       prefill: {
-
-        name: form.name,
-
-        contact: form.phone
+        name: form.name || "",
+        email: form.email || "",
+        contact: form.phone || ""
       },
 
       notes: {
-
-        address: form.address
+        address: form.address || ""
       },
 
       theme: {
         color: "#ff7a00"
       }
-
     };
 
-    const razorpay =
-      new window.Razorpay(options);
-
+    const razorpay = new window.Razorpay(options);
     razorpay.open();
   };
 
   return (
-
     <div className="payment-page">
 
       <div className="payment-container">
 
-        {/* LEFT */}
-
+        {/* LEFT SIDE */}
         <div className="payment-left">
 
           <h2>Payment Method</h2>
 
-          <div className="payment-card active">
-
-            <div className="payment-top">
-
-              <span>
-                Razorpay Secure Payment
-              </span>
-
-              <span className="secure">
-                Secure
-              </span>
-
-            </div>
-
-            <p>
-              Pay using UPI, Cards,
-              Net Banking, Wallets
-              and more.
-            </p>
-
+          <div className="payment-card">
+            <p>Razorpay Secure Payment</p>
           </div>
-
-          {/* DELIVERY */}
 
           <div className="delivery-box">
 
             <h3>Delivery Details</h3>
 
-            <p>
-              {form.name}
-            </p>
-
-            <p>
-              {form.address}
-            </p>
-
-            <p>
-              {form.city},
-              {" "}
-              {form.state}
-              {" - "}
-              {form.pincode}
-            </p>
-
-            <p>
-              Phone:
-              {" "}
-              {form.phone}
-            </p>
-
-            <div className="delivery-time">
-
-              Estimated Delivery:
-              {" "}
-              {delivery}
-
-            </div>
+            <p>{form.name}</p>
+            <p>{form.address}</p>
+            <p>{form.city} {form.state} {form.pincode}</p>
+            <p>{form.phone}</p>
+            <p>{delivery}</p>
 
           </div>
 
         </div>
 
-        {/* RIGHT */}
-
+        {/* RIGHT SIDE */}
         <div className="payment-right">
 
           <h2>Order Summary</h2>
 
           {cart.map((item, i) => (
-
-            <div
-              className="summary-item"
-              key={i}
-            >
-
-              <span>
-                {item.name}
-                {" × "}
-                {item.qty}
-              </span>
-
-              <span>
-                ₹
-                {item.price * item.qty}
-              </span>
-
+            <div key={i} className="summary-item">
+              <span>{item.name} × {item.qty}</span>
+              <span>₹{item.price * item.qty}</span>
             </div>
-
           ))}
 
-          <div className="summary-line">
+          <hr />
 
-            <span>Subtotal</span>
+          <p>Subtotal: ₹{baseSubtotal}</p>
+          <p>Discount: -₹{discount}</p>
+          <p>Shipping: ₹{shipping}</p>
 
-            <span>
-              ₹{baseSubtotal}
-            </span>
+          <h3>Total: ₹{finalTotal}</h3>
 
-          </div>
-
-          <div className="summary-line green">
-
-            <span>Discount</span>
-
-            <span>
-              -₹{discount}
-            </span>
-
-          </div>
-
-          <div className="summary-line">
-
-            <span>Shipping</span>
-
-            <span>
-              ₹{shipping}
-            </span>
-
-          </div>
-
-          <div className="summary-line total">
-
-            <span>Total</span>
-
-            <span>
-              ₹{finalTotal}
-            </span>
-
-          </div>
-
-          {/* PAY BUTTON */}
-
-          <button
-            className="pay-btn"
-            onClick={handlePayment}
-          >
-
+          <button className="pay-btn" onClick={handlePayment}>
             Pay ₹{finalTotal}
-
           </button>
 
         </div>
@@ -237,7 +151,6 @@ function Payment() {
       </div>
 
     </div>
-
   );
 }
 
