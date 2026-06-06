@@ -28,6 +28,7 @@ function Payment() {
 
   // PAYMENT
   const handlePayment = () => {
+    alert("Button clicked");
     console.log("FINAL TOTAL =", finalTotal);
 
     const options = {
