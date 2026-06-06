@@ -29,9 +29,12 @@ export default function Contact() {
         <div className="contact-card">
 
           <h2>Phone</h2>
-          <p>+91 76666 03417
-             +91 80800 53880
-          </p>
+          <p>+91 76666 03417  </p>
+          <p>+91 80800 53880  </p>
+          
+         
+          
+             
 
         </div>
 
