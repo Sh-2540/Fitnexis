@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import "./payment.css";
 
 function Payment() {
 
@@ -27,50 +27,59 @@ function Payment() {
   } = billing;
 
   // PAYMENT
-  const handlePayment = async () => {
+  const handlePayment = () => {
+    console.log("FINAL TOTAL =", finalTotal);
 
-    if (!window.Razorpay) {
-      alert("Razorpay SDK failed to load");
-      return;
-    }
-    const amount = Math.round(Number(finalTotal) * 100);
+    const options = {
 
-    console.log("FINAL TOTAL:", finalTotal);
-    
-    console.log("RAZORPAY AMOUNT:", amount);
-    
-    if (!amount || amount <= 0) {
-      alert("Invalid amount");
-      return;
-    }
-    const handlePayment = () => {
+      key: "YOUR_RAZORPAY_KEY",
 
-      const options = {
-    
-        key: "rzp_test_SyICPPjLwUrkbL",
-    
-        amount: 50000,
-    
-        currency: "INR",
-    
-        name: "Fitnexis",
-    
-        description: "Test Payment",
-    
-        handler: function (response) {
-    
-          alert("Payment Successful");
-    
-          console.log(response);
-        }
-      };
-    
-      const razorpay = new window.Razorpay(options);
-    
-      razorpay.open();
+      amount: Math.round(Number(finalTotal) * 100),
+
+      currency: "INR",
+
+      name: "Quicknexis",
+
+      description: "Secure Payment",
+
+      image: "/logo.png",
+
+      handler: function (response) {
+
+        localStorage.setItem(
+          "payment",
+          JSON.stringify(response)
+        );
+
+        alert("Payment Successful");
+
+        navigate("/success");
+      },
+
+      prefill: {
+
+        name: form.name,
+
+        contact: form.phone
+      },
+
+      notes: {
+
+        address: form.address
+      },
+
+      theme: {
+        color: "#ff7a00"
+      }
+
     };
-  }
-  
+
+    const razorpay =
+      new window.Razorpay(options);
+
+    razorpay.open();
+  };
+
   return (
 
     <div className="payment-page">
@@ -232,6 +241,5 @@ function Payment() {
 
   );
 }
-
 
 export default Payment;
