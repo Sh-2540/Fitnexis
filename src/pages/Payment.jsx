@@ -51,7 +51,7 @@ function Payment() {
 
     const options = {
 
-      key: "rzp_test_SyICPPjLwUrkbL",
+      key: "rzp_live_SyNyCgjxMxpZKz",
 
       amount: amount,
       currency: "INR",
@@ -154,4 +154,4 @@ function Payment() {
   );
 }
 
-export default Payment;
+export default Payment;       
