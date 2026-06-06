@@ -27,55 +27,64 @@ function Payment() {
   } = billing;
 
   // PAYMENT
-  const handlePayment = () => {
+  const handlePayment = async () => {
 
+    if (!window.Razorpay) {
+      alert("Razorpay SDK failed to load");
+      return;
+    }
+  
+    const amount = Math.round(Number(finalTotal) * 100);
+  
+    console.log("Final Total:", finalTotal);
+    console.log("Amount:", amount);
+  
+    if (!amount || amount <= 0) {
+      alert("Invalid payment amount");
+      return;
+    }
+  
     const options = {
-
-      key: "YOUR_RAZORPAY_KEY",
-
-      amount: finalTotal * 100,
-
+  
+      key: "rzp_test_SyHmMT2mvr0CIk",
+  
+      amount: amount,
+  
       currency: "INR",
-
-      name: "Quicknexis",
-
-      description: "Secure Payment",
-
-      image: "/logo.png",
-
+  
+      name: "Fitnexis",
+  
+      description: "Premium Supplement Order",
+  
       handler: function (response) {
-
-        localStorage.setItem(
-          "payment",
-          JSON.stringify(response)
-        );
-
-        alert("Payment Successful");
-
+  
+        console.log("PAYMENT SUCCESS:", response);
+  
+        alert("Payment Successful!");
+  
         navigate("/success");
       },
-
+  
       prefill: {
-
-        name: form.name,
-
-        contact: form.phone
+        name: billing?.name || "",
+        contact: billing?.phone || "",
+        email: "",
       },
-
-      notes: {
-
-        address: form.address
-      },
-
+  
       theme: {
-        color: "#ff7a00"
-      }
-
+        color: "#ff7a00",
+      },
     };
-
-    const razorpay =
-      new window.Razorpay(options);
-
+  
+    const razorpay = new window.Razorpay(options);
+  
+    razorpay.on("payment.failed", function (response) {
+  
+      console.log("PAYMENT FAILED:", response);
+  
+      alert(response.error.description);
+    });
+  
     razorpay.open();
   };
 
