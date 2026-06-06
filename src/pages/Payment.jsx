@@ -48,7 +48,7 @@ function Payment() {
   
       key: "rzp_live_SyICPPjLwUrkbL",
   
-      amount: amount,
+      amount:Math.round(Number(finalTotal)*100),
   
       currency: "INR",
   
