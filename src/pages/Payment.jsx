@@ -33,9 +33,12 @@ function Payment() {
       alert("Razorpay SDK failed to load");
       return;
     }
-  
     const amount = Math.round(Number(finalTotal) * 100);
-  
+
+    console.log("FINAL TOTAL:", finalTotal);
+    
+    console.log("RAZORPAY AMOUNT:", amount);
+    
     if (!amount || amount <= 0) {
       alert("Invalid amount");
       return;
