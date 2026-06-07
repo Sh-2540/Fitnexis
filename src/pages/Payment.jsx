@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./payment.css";
 
 function Payment() {
+
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+
+  const [loading, setLoading] =
+    useState(false);
 
   // GET DATA
   const checkout =
-    JSON.parse(localStorage.getItem("checkout")) || {};
+    JSON.parse(
+      localStorage.getItem("checkout")
+    ) || {};
 
   const billing =
-    JSON.parse(localStorage.getItem("billing")) || {};
+    JSON.parse(
+      localStorage.getItem("billing")
+    ) || {};
 
   const {
     cart = [],
@@ -27,121 +35,135 @@ function Payment() {
 
   // LOAD RAZORPAY SDK
   useEffect(() => {
-    const loadScript = () => {
-      return new Promise((resolve) => {
-        const script = document.createElement("script");
 
-        script.src =
-          "https://checkout.razorpay.com/v1/checkout.js";
+    const script =
+      document.createElement("script");
 
-        script.onload = () => {
-          console.log("Razorpay Loaded");
-          resolve(true);
-        };
+    script.src =
+      "https://checkout.razorpay.com/v1/checkout.js";
 
-        script.onerror = () => {
-          console.log("Razorpay Failed To Load");
-          resolve(false);
-        };
+    script.async = true;
 
-        document.body.appendChild(script);
-      });
+    script.onload = () => {
+      console.log(
+        "Razorpay SDK Loaded"
+      );
     };
 
-    loadScript();
+    script.onerror = () => {
+      console.log(
+        "Razorpay SDK Failed"
+      );
+    };
+
+    document.body.appendChild(script);
+
   }, []);
 
-  // PAYMENT HANDLER
+  // HANDLE PAYMENT
   const handlePayment = async () => {
+
     try {
+
       setLoading(true);
 
+      // CHECK SDK
       if (!window.Razorpay) {
-        alert("Razorpay SDK not loaded");
+
+        alert(
+          "Razorpay SDK failed to load"
+        );
+
         return;
       }
 
-      const amount = Number(finalTotal);
+      // SAFE AMOUNT
+      const amount =
+        Math.round(
+          Number(finalTotal || 0) * 100
+        );
 
-      console.log("Final Total:", finalTotal);
-      console.log("Amount:", amount);
-
-      if (!amount || amount <= 0) {
-        alert("Invalid amount");
-        return;
-      }
-
-      // CREATE ORDER FROM BACKEND
-      const response = await fetch(
-        "https://your-backend-url.com/create-order",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
-          body: JSON.stringify({
-            amount
-          })
-        }
+      console.log(
+        "Final Total:",
+        finalTotal
       );
 
-      const order = await response.json();
+      console.log(
+        "Razorpay Amount:",
+        amount
+      );
 
-      console.log("ORDER:", order);
+      // VALIDATION
+      if (!amount || amount <= 0) {
 
-      if (!order.id) {
-        alert("Order creation failed");
+        alert("Invalid amount");
+
         return;
       }
 
+      // OPTIONS
       const options = {
+
         key: "rzp_live_SyNyCgjxMxpZKz",
 
-        amount: order.amount,
-        currency: order.currency,
-        order_id: order.id,
+        amount: amount,
+
+        currency: "INR",
 
         name: "Fitnexis",
+
         description:
           "Secure Order Payment",
 
         image: "/logo.png",
 
         handler: function (response) {
+
           console.log(
             "Payment Success:",
             response
           );
 
+          // SAVE PAYMENT
           localStorage.setItem(
             "payment",
             JSON.stringify(response)
           );
 
-          alert("Payment Successful!");
+          alert(
+            "Payment Successful!"
+          );
 
           navigate("/success");
         },
 
         prefill: {
-          name: form.name || "",
-          email: form.email || "",
+
+          name:
+            form.name || "",
+
+          email:
+            form.email || "",
+
           contact:
             form.phone || ""
         },
 
         notes: {
+
           address:
             form.address || ""
         },
 
         theme: {
+
           color: "#ff7a00"
         },
 
         modal: {
+
           ondismiss: function () {
+
             console.log(
               "Payment popup closed"
             );
@@ -149,121 +171,190 @@ function Payment() {
         }
       };
 
+      // CREATE RAZORPAY
       const razorpay =
         new window.Razorpay(options);
 
       // PAYMENT FAILED
       razorpay.on(
         "payment.failed",
+
         function (response) {
+
           console.log(
             "Payment Failed:",
             response
           );
 
           alert(
-            response.error
-              .description
+            response.error.description
           );
         }
       );
 
+      // OPEN PAYMENT
       razorpay.open();
 
     } catch (error) {
+
       console.error(error);
+
       alert(
         "Something went wrong while processing payment"
       );
+
     } finally {
+
       setLoading(false);
     }
   };
 
   return (
+
     <div className="payment-page">
+
       <div className="payment-container">
 
         {/* LEFT */}
+
         <div className="payment-left">
-          <h2>Payment Method</h2>
+
+          <h2>
+            Payment Method
+          </h2>
 
           <div className="payment-card">
-            <p>Razorpay Secure Payment</p>
-          </div>
-
-          <div className="delivery-box">
-            <h3>Delivery Details</h3>
-
-            <p>{form.name}</p>
-            <p>{form.address}</p>
 
             <p>
-              {form.city}{" "}
-              {form.state}{" "}
-              {form.pincode}
+              Razorpay Secure Payment
             </p>
 
-            <p>{form.phone}</p>
-            <p>{delivery}</p>
           </div>
+
+          {/* DELIVERY */}
+
+          <div className="delivery-box">
+
+            <h3>
+              Delivery Details
+            </h3>
+
+            <p>
+              {form.name}
+            </p>
+
+            <p>
+              {form.address}
+            </p>
+
+            <p>
+
+              {form.city}
+              {" "}
+              {form.state}
+              {" "}
+              {form.pincode}
+
+            </p>
+
+            <p>
+              {form.phone}
+            </p>
+
+            <p>
+              {delivery}
+            </p>
+
+          </div>
+
         </div>
 
         {/* RIGHT */}
+
         <div className="payment-right">
-          <h2>Order Summary</h2>
+
+          <h2>
+            Order Summary
+          </h2>
 
           {cart.map((item, i) => (
+
             <div
               key={i}
               className="summary-item"
             >
+
               <span>
-                {item.name} ×{" "}
+
+                {item.name}
+                {" × "}
                 {item.qty}
+
               </span>
 
               <span>
+
                 ₹
-                {item.price *
-                  item.qty}
+                {item.price * item.qty}
+
               </span>
+
             </div>
+
           ))}
 
           <hr />
 
           <p>
-            Subtotal: ₹
-            {baseSubtotal}
+
+            Subtotal:
+            {" "}
+            ₹{baseSubtotal}
+
           </p>
 
           <p>
-            Discount: -₹
-            {discount}
+
+            Discount:
+            {" "}
+            -₹{discount}
+
           </p>
 
           <p>
-            Shipping: ₹
-            {shipping}
+
+            Shipping:
+            {" "}
+            ₹{shipping}
+
           </p>
 
           <h3>
-            Total: ₹
-            {finalTotal}
+
+            Total:
+            {" "}
+            ₹{finalTotal}
+
           </h3>
+
+          {/* PAY BUTTON */}
 
           <button
             className="pay-btn"
             onClick={handlePayment}
             disabled={loading}
           >
+
             {loading
               ? "Processing..."
               : `Pay ₹${finalTotal}`}
+
           </button>
+
         </div>
+
       </div>
+
     </div>
   );
 }
