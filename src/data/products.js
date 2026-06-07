@@ -3,7 +3,7 @@ const products = [
   {
     id: 1,
     name: "T-BLAST TESTO BOOSTER",
-    brand: "Zen",
+    brand: "T-Blast",
 
     images: [
       "1.jpeg",
@@ -76,7 +76,7 @@ reviews: [
   
     name: "ULTRON WHEY PROTEIN",
   
-    brand: "Zen",
+    brand: "Ultron",
   
     images: [
       "2.jpeg",
@@ -170,7 +170,7 @@ reviews: [
   {
     id: 20,
     name: "WOLVERINE RIPPED WHEY",
-    brand: "Verdi",
+    brand: "Wolverine",
 
     images: [
       "90.jpeg"
@@ -232,7 +232,7 @@ shipping:
   {
     id: 3,
     name: "WORTHY MULTIVITAMINS",
-    brand: "Ultron",
+    brand: "Worthy",
 
     images: [
       "3.jpeg",
@@ -299,7 +299,7 @@ lifestyle: [
   {
     id: 4,
     name: "CUTS XXL",
-    brand: "Captain",
+    brand: "Blade",
 
     images: [
       "4.jpeg",
@@ -366,7 +366,7 @@ lifestyle: [
   {
     id: 5,
     name: "STRANGE PRE-WORKOUT",
-    brand: "Ironic",
+    brand: "Strange",
 
     images: [
       "5.jpeg",
@@ -444,7 +444,7 @@ lifestyle: [
 
     id: 6,
     name: "AQUA MARINE COLLAGEN",
-    brand: "Dynamo",
+    brand: "Aqua",
 
     images: [
 
@@ -518,7 +518,7 @@ lifestyle: [
   {
     id: 21,
     name: "ZEN MASS GAINER",
-    brand: "Atom",
+    brand: "Zen",
 
     images: [
       "92.jpeg"
@@ -584,7 +584,7 @@ warnings: [
   {
     id: 7,
     name: "AQUA OMEGA-3 FISH OIL",
-    brand: "Creastrom",
+    brand: "Aqua",
 
     images: [
       "7.jpeg",
@@ -637,7 +637,7 @@ shipping:
   {
     id: 8,
     name: "L-ARGININE",
-    brand: "Strange",
+    brand: "Atom",
 
     images: [
       "8.jpeg",
@@ -692,7 +692,7 @@ disclaimer:
   {
     id: 9,
     name: "CAPTAIN'S WHEY PROTEIN",
-    brand: "Health",
+    brand: "Captain",
 
     images: [
       "9.jpeg",
@@ -754,7 +754,7 @@ shipping:
   {
     id: 10,
     name: "CREATINE",
-    brand: "Health",
+    brand: "Crea-Storm",
 
     images: [
       "10.jpeg",
@@ -815,7 +815,7 @@ shipping:
   {
     id: 11,
     name: "ZEN WHEY",
-    brand: "Energy",
+    brand: "Zen",
 
     images: [
       "18.jpeg"
@@ -887,7 +887,7 @@ shipping:
   {
     id: 12,
     name: "DYNAMO XTREME GAINER",
-    brand: "Health",
+    brand: "Dynamo",
 
     images: [
       "11.jpeg",
@@ -949,7 +949,7 @@ warnings: [
   {
     id: 13,
     name: "ELIXIR L-GLUTAMINE",
-    brand: "Health",
+    brand: "Elixir",
 
     images: [
       "12.jpeg",
@@ -1007,7 +1007,7 @@ shipping:
   {
     id: 14,
     name: "ETERNAL ENERGY DRINK",
-    brand: "Health",
+    brand: "Eternal",
 
     images: [
       "13.jpeg"
@@ -1074,7 +1074,7 @@ shipping:
   {
     id: 15,
     name: "GLADIATOR LEAN GAINZ",
-    brand: "Health",
+    brand: "Gladiator",
 
     images: [
       "14.jpeg",
@@ -1127,7 +1127,7 @@ shipping:
   {
     id: 16,
     name: "GUARDIAN EAA+BCAA",
-    brand: "Health",
+    brand: "Guardian",
 
     images: [
       "15.jpeg",
@@ -1189,7 +1189,7 @@ shipping:
   {
     id: 17,
     name: "INFINITY ISOLATE PROTEIN",
-    brand: "Health",
+    brand: "Infinity",
 
     images: [
       "16.jpeg",
@@ -1258,7 +1258,7 @@ shipping:
   {
     id: 18,
     name: "IRONIC MASS GAINER",
-    brand: "Health",
+    brand: "Ironic",
 
     images: [
       "17.jpeg",
@@ -1322,7 +1322,7 @@ shipping:
   {
     id: 19,
     name: "L-CARNITINE",
-    brand: "Wolverine",
+    brand: "Blade",
 
     images: [
       "93.jpeg",
