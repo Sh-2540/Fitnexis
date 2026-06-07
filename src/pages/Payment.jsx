@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./payment.css";
+
 
 function Payment() {
 
@@ -9,12 +9,13 @@ function Payment() {
   const [loading, setLoading] =
     useState(false);
 
-  // GET DATA
+  // GET CHECKOUT DATA
   const checkout =
     JSON.parse(
       localStorage.getItem("checkout")
     ) || {};
 
+  // GET BILLING DATA
   const billing =
     JSON.parse(
       localStorage.getItem("billing")
@@ -36,27 +37,41 @@ function Payment() {
   // LOAD RAZORPAY SDK
   useEffect(() => {
 
-    const script =
-      document.createElement("script");
+    const loadRazorpay = () => {
 
-    script.src =
-      "https://checkout.razorpay.com/v1/checkout.js";
+      return new Promise((resolve) => {
 
-    script.async = true;
+        const script =
+          document.createElement("script");
 
-    script.onload = () => {
-      console.log(
-        "Razorpay SDK Loaded"
-      );
+        script.src =
+          "https://checkout.razorpay.com/v1/checkout.js";
+
+        script.async = true;
+
+        script.onload = () => {
+
+          console.log(
+            "Razorpay SDK Loaded"
+          );
+
+          resolve(true);
+        };
+
+        script.onerror = () => {
+
+          console.log(
+            "Razorpay SDK Failed"
+          );
+
+          resolve(false);
+        };
+
+        document.body.appendChild(script);
+      });
     };
 
-    script.onerror = () => {
-      console.log(
-        "Razorpay SDK Failed"
-      );
-    };
-
-    document.body.appendChild(script);
+    loadRazorpay();
 
   }, []);
 
@@ -71,7 +86,7 @@ function Payment() {
       if (!window.Razorpay) {
 
         alert(
-          "Razorpay SDK failed to load"
+          "Razorpay SDK not loaded"
         );
 
         return;
@@ -84,12 +99,17 @@ function Payment() {
         );
 
       console.log(
-        "Final Total:",
+        "window.Razorpay =",
+        window.Razorpay
+      );
+
+      console.log(
+        "finalTotal =",
         finalTotal
       );
 
       console.log(
-        "Razorpay Amount:",
+        "amount =",
         amount
       );
 
@@ -101,9 +121,10 @@ function Payment() {
         return;
       }
 
-      // OPTIONS
+      // RAZORPAY OPTIONS
       const options = {
 
+        // REPLACE WITH YOUR LIVE KEY
         key: "rzp_live_SyNyCgjxMxpZKz",
 
         amount: amount,
@@ -171,7 +192,7 @@ function Payment() {
         }
       };
 
-      // CREATE RAZORPAY
+      // CREATE RAZORPAY INSTANCE
       const razorpay =
         new window.Razorpay(options);
 
@@ -192,15 +213,19 @@ function Payment() {
         }
       );
 
-      // OPEN PAYMENT
+      // OPEN PAYMENT POPUP
       razorpay.open();
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        "FULL PAYMENT ERROR:",
+        error
+      );
 
       alert(
-        "Something went wrong while processing payment"
+        error.message ||
+        "Payment Error"
       );
 
     } finally {
@@ -231,7 +256,7 @@ function Payment() {
 
           </div>
 
-          {/* DELIVERY */}
+          {/* DELIVERY DETAILS */}
 
           <div className="delivery-box">
 
