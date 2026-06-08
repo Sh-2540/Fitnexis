@@ -2674,42 +2674,37 @@ html, body {
 }
 
 /* HAMBURGER */
-
 .hamburger {
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
 
-  border: none;
-  background: transparent;
-
-  display: none;
-
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  gap: 5px;
+  gap: 6px;
 
   cursor: pointer;
 
-  z-index: 10001;
+  z-index: 10000;
 }
 
 .hamburger span {
-  width: 24px;
-  height: 2px;
+  width: 26px;
+  height: 3px;
 
   background: white;
 
-  border-radius: 999px;
+  border-radius: 20px;
 
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
-/* ANIMATION */
+/* OPEN ANIMATION */
 
 .hamburger.open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(9px) rotate(45deg);
 }
 
 .hamburger.open span:nth-child(2) {
@@ -2717,7 +2712,7 @@ html, body {
 }
 
 .hamburger.open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-9px) rotate(-45deg);
 }
 
 /* MOBILE OVERLAY */
