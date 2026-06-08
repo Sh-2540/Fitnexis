@@ -2843,3 +2843,29 @@ html, body {
   }
 
 }
+/* FIX HAMBURGER CLICK */
+
+.hamburger {
+  position: relative;
+  z-index: 100000;
+  pointer-events: auto;
+}
+
+.mobile-drawer {
+  z-index: 99999;
+}
+
+.mobile-overlay {
+  z-index: 99998;
+}
+
+.navbar {
+  z-index: 100000;
+}
+
+.hero,
+.hero-slider,
+.hero-slide,
+.hero::after {
+  z-index: 1 !important;
+}
