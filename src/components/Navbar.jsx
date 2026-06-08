@@ -9,68 +9,108 @@ export default function Navbar({
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
+    <>
 
-    <nav className="navbar">
+      <nav className="navbar">
 
-      <h1 className="logo">
-        Fitnexis
-      </h1>
+        <h1 className="logo">
+          Fitnexis
+        </h1>
 
-      {/* HAMBURGER */}
+        {/* DESKTOP NAV */}
+        <ul className="nav-links">
+
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+
+          <li>
+            <Link to="/shop">Shop</Link>
+          </li>
+
+          <li>
+            <Link to="/products">Products</Link>
+          </li>
+
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+
+        </ul>
+
+        {/* RIGHT SIDE */}
+        <div className="nav-right">
+
+          <button
+            className="primary-btn"
+            onClick={openCart}
+          >
+            Cart ({cartCount})
+          </button>
+
+          {/* HAMBURGER */}
+          <button
+            className={`hamburger ${menuOpen ? "open" : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+        </div>
+
+      </nav>
+
+      {/* OVERLAY */}
       <div
-  className={`hamburger ${menuOpen ? "open" : ""}`}
-  onClick={() => setMenuOpen(!menuOpen)}
->
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-      
+        className={`mobile-overlay ${menuOpen ? "active" : ""}`}
+        onClick={() => setMenuOpen(false)}
+      ></div>
 
-      {/* NAV LINKS */}
-      <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+      {/* MOBILE DRAWER */}
+      <div className={`mobile-drawer ${menuOpen ? "active" : ""}`}>
 
-        <li>
-          <Link to="/" onClick={() => setMenuOpen(false)}>
-            Home
-          </Link>
-        </li>
+        <ul className="mobile-links">
 
-        <li>
-          <Link to="/shop" onClick={() => setMenuOpen(false)}>
-            Shop
-          </Link>
-        </li>
+          <li>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              Home
+            </Link>
+          </li>
 
-        <li>
-          <Link to="/products" onClick={() => setMenuOpen(false)}>
-            Products
-          </Link>
-        </li>
+          <li>
+            <Link to="/shop" onClick={() => setMenuOpen(false)}>
+              Shop
+            </Link>
+          </li>
 
-        <li>
-          <Link to="/contact" onClick={() => setMenuOpen(false)}>
-            Contact
-          </Link>
-        </li>
+          <li>
+            <Link to="/products" onClick={() => setMenuOpen(false)}>
+              Products
+            </Link>
+          </li>
 
-        <li>
-          <Link to="/login" onClick={() => setMenuOpen(false)}>
-            Login
-          </Link>
-        </li>
+          <li>
+            <Link to="/contact" onClick={() => setMenuOpen(false)}>
+              Contact
+            </Link>
+          </li>
 
-        <button
-          className="primary-btn"
-          onClick={openCart}
-        >
-          Cart ({cartCount})
-        </button>
+          <li>
+            <Link to="/login" onClick={() => setMenuOpen(false)}>
+              Login
+            </Link>
+          </li>
 
-      </ul>
+        </ul>
 
-    </nav>
+      </div>
 
+    </>
   );
-
 }
