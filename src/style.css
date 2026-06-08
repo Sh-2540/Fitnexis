@@ -2310,3 +2310,152 @@ url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1600");
   }
 
 }
+/* =========================
+   GLOBAL MOBILE FIXES (SAFE PATCH)
+========================= */
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Prevent all elements from causing horizontal scroll */
+* {
+  max-width: 100%;
+}
+
+/* =========================
+   NAVBAR MOBILE FIX
+========================= */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 12px 5%;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    font-size: 2rem;
+    margin: 10px 0;
+  }
+
+  .nav-links {
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+/* =========================
+   HERO FIX (IMPORTANT)
+========================= */
+
+@media (max-width: 768px) {
+
+  .hero {
+    padding: 100px 5%;
+  }
+
+  .hero h1 {
+    font-size: 3rem !important;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* =========================
+   GRID FIXES (PRODUCTS / BEST / SHOP)
+========================= */
+
+@media (max-width: 768px) {
+
+  .products-grid,
+  .best-grid,
+  .shop-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact-container,
+  .shop-features {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =========================
+   CART SIDEBAR MOBILE FIX
+========================= */
+
+@media (max-width: 768px) {
+
+  .cart-sidebar {
+    width: 100%;
+    right: -100%;
+  }
+
+  .cart-sidebar.active {
+    right: 0;
+  }
+}
+
+/* =========================
+   FILTER / INPUT FIX
+========================= */
+
+@media (max-width: 768px) {
+
+  .filter-bar,
+  .premium-filter-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-box input,
+  .select-box select {
+    width: 100% !important;
+    max-width: 320px;
+  }
+}
+
+/* =========================
+   BEST CARD IMAGE FIX
+========================= */
+
+@media (max-width: 768px) {
+
+  .best-card img {
+    height: 320px;
+    object-fit: contain;
+  }
+}
+
+/* =========================
+   TEXT SCALING FIX (ONLY MOBILE)
+========================= */
+
+@media (max-width: 480px) {
+
+  .shop-header h1,
+  .best-header h2,
+  .why-header h2 {
+    font-size: 2.2rem !important;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem !important;
+  }
+}
