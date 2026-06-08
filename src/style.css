@@ -2505,3 +2505,85 @@ html, body {
     font-size: 2rem;
   }
 }
+/* =========================
+   FINAL MOBILE FIXES
+========================= */
+
+@media (max-width: 768px) {
+
+  /* HERO TEXT FIX */
+  .hero h1 {
+    font-size: 2.7rem !important;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    padding: 0 10px;
+  }
+
+  .hero h1 span {
+    display: inline-block;
+    color: #ff7a00;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    padding: 0 12px;
+    margin-top: 16px;
+  }
+
+  /* SHOP HERO FIX */
+  .shop-hero,
+  .hero-slide,
+  .hero {
+    background-position: center center !important;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* SHOP HEADER */
+  .shop-header h1,
+  .shop-hero h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  /* BUY BY GOAL FIX */
+  .shop-grid,
+  .products-grid,
+  .best-grid,
+  .shop-features,
+  .why-grid,
+  .contact-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* PRODUCT CARD FIX */
+  .shop-card,
+  .best-card,
+  .product-card {
+    width: 100%;
+  }
+
+  .shop-card img,
+  .best-card img,
+  .product-card img {
+    height: 320px !important;
+    object-fit: cover;
+  }
+
+  /* REMOVE SIDE SHIFT */
+  body,
+  html {
+    overflow-x: hidden;
+  }
+
+  .navbar,
+  .hero,
+  .shop-page,
+  .products,
+  .best-sellers,
+  .why-section {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+}
