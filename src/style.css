@@ -2864,3 +2864,161 @@ html, body {
 .hero::after {
   z-index: 1 !important;
 }
+/* =========================
+   MOBILE NAVBAR FIX
+========================= */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 2001;
+  background: none;
+  border: none;
+}
+
+.hamburger span {
+  width: 30px;
+  height: 3px;
+  background: white;
+  border-radius: 999px;
+  transition: 0.3s ease;
+}
+
+/* CROSS ANIMATION */
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(12px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-12px);
+}
+
+/* MOBILE MENU */
+
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 1500;
+}
+
+.mobile-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100vh;
+  background: #0f0f0f;
+  padding: 120px 30px;
+  transition: 0.4s ease;
+  z-index: 2000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mobile-drawer.active {
+  right: 0;
+}
+
+.mobile-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.mobile-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.mobile-links a.active {
+  color: #ff7a00;
+}
+
+.mobile-cart-btn {
+  width: 100%;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar {
+    padding: 16px 20px;
+  }
+
+  .logo {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .primary-btn {
+    display: none;
+  }
+
+  .hero {
+    padding: 120px 20px 80px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 3rem !important;
+    line-height: 1;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .hero-content,
+  .hero-overlay {
+    width: 100%;
+  }
+
+  .products-grid,
+  .best-grid,
+  .shop-grid,
+  .contact-container,
+  .shop-features,
+  .why-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .shop-page,
+  .products,
+  .best-sellers,
+  .why-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
