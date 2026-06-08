@@ -2504,3 +2504,89 @@ html, body {
     display: none;
   }
 }
+/* =========================
+   MOBILE NAVBAR FIX
+========================= */
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+  z-index:2001;
+}
+
+.hamburger span{
+  width:28px;
+  height:3px;
+  background:white;
+  border-radius:10px;
+}
+
+@media(max-width:768px){
+
+  .navbar{
+    padding:16px 20px;
+  }
+
+  .logo{
+    margin:0;
+    font-size:2rem;
+  }
+
+  .hamburger{
+    display:flex;
+  }
+
+  .nav-links{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:75%;
+    height:100vh;
+
+    background:#0a0a0a;
+
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+
+    padding:40px;
+
+    gap:30px;
+
+    transition:0.4s ease;
+
+    z-index:2000;
+  }
+
+  .nav-links.active{
+    right:0;
+  }
+
+  .nav-links li{
+    width:100%;
+  }
+
+  .nav-links a{
+    font-size:1.3rem;
+  }
+
+  .primary-btn{
+    width:100%;
+  }
+
+  .hero{
+    overflow:hidden;
+  }
+
+  .hero-slider{
+    width:100%;
+    overflow:hidden;
+  }
+
+  .hero-slide{
+    min-width:100%;
+  }
+
+}
