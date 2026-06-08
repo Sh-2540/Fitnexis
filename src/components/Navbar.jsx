@@ -1,77 +1,100 @@
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
-
-
-
+import { useState } from "react";
 
 export default function Navbar({
   cartCount,
   openCart
 }) {
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
 
-    <nav className="navbar">
+    <>
+    
+      <nav className="navbar">
 
-      <h1 className="logo">
-        Fitnexis
-      </h1>
+        <h1 className="logo">
+          Fitnexis
+        </h1>
 
-      <ul className="nav-links">
+        {/* HAMBURGER */}
+        <div
+          className="hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
 
-        <li>
+        {/* NAV LINKS */}
+        <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
 
-          <Link to="/">
-            Home
-          </Link>
+          <li>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              Home
+            </Link>
+          </li>
 
-        </li>
+          <li>
+            <Link to="/shop" onClick={() => setMenuOpen(false)}>
+              Shop
+            </Link>
+          </li>
 
-        <li>
+          <li>
+            <Link to="/products" onClick={() => setMenuOpen(false)}>
+              Products
+            </Link>
+          </li>
 
-          <Link to="/shop">
-            Shop
-          </Link>
+          <li>
+            <Link to="/contact" onClick={() => setMenuOpen(false)}>
+              Contact
+            </Link>
+          </li>
 
-        </li>
+          <li>
+            <Link to="/login" onClick={() => setMenuOpen(false)}>
+              Login
+            </Link>
+          </li>
 
-        <li>
+          {/* MOBILE CART BUTTON */}
+          <li className="mobile-cart-btn">
+            <button
+              className="primary-btn"
+              onClick={() => {
+                openCart();
+                setMenuOpen(false);
+              }}
+            >
+              Cart ({cartCount})
+            </button>
+          </li>
 
-          <Link to="/products">
-            Products
-          </Link>
+        </ul>
 
-        </li>
+        {/* DESKTOP CART BUTTON */}
+        <button
+          className="primary-btn desktop-cart"
+          onClick={openCart}
+        >
+          Cart ({cartCount})
+        </button>
 
-        <li>
+      </nav>
 
-          <Link to="/contact">
-            Contact
-          </Link>
+      {/* OVERLAY */}
+      <div
+        className={`nav-overlay ${menuOpen ? "active" : ""}`}
+        onClick={() => setMenuOpen(false)}
+      ></div>
 
-        </li>
-        
-        <li>
-
-          <Link to="/login">
-            Login
-          </Link>
-        </li>  
-
-
-      </ul>
-      
-      <button
-        className="primary-btn"
-        onClick={openCart}
-      >
-
-        Cart ({cartCount})
-
-      </button>
-      
-    </nav>
+    </>
 
   );
 
