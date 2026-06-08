@@ -18,13 +18,14 @@ export default function Navbar({
 
       {/* HAMBURGER */}
       <div
-        className="hamburger"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+  className={`hamburger ${menuOpen ? "open" : ""}`}
+  onClick={() => setMenuOpen(!menuOpen)}
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+      
 
       {/* NAV LINKS */}
       <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
