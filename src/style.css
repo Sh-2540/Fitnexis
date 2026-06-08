@@ -729,6 +729,8 @@ body {
   justify-content:center;
   text-align:center;
   padding:120px 8%;
+  width: 100%;
+  overflow: hidden;
 
   background:
     linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)),
@@ -1072,9 +1074,10 @@ body {
 }
 
 .hero-slider{
-  width:300%;
+  width:100%;
   height:100%;
   display:flex;
+  overflow: hidden;
 
   animation:slideHero 15s infinite;
 }
@@ -2462,8 +2465,10 @@ html, body {
     top: 0;
     right: -100%;
 
-    width: 75%;
+    width: 100%;
     height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     background: rgba(8,8,8,0.98);
 
