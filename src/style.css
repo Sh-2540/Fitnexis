@@ -1,4 +1,4 @@
-      /* =========================
+/* =========================
    GOOGLE FONTS
 ========================= */
 html, body {
@@ -178,8 +178,25 @@ body {
   transition: transform var(--transition), box-shadow var(--transition);
   box-shadow: 0 4px 20px rgba(199, 194, 190, 0.25);
 }
+.hero {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 8%;
+  position: relative;
 
- 
+  background:
+    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+    url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1600");
+
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
 /* CONTENT CONTAINER */
 .hero-content {
   max-width: 800px;
@@ -705,6 +722,64 @@ body {
    HERO SECTION
 ========================= */
 
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:120px 8%;
+  width: 100%;
+  overflow: hidden;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)),
+    url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1600");
+
+  background-size:cover;
+  background-position:center;
+  position:relative;
+}
+
+.hero-overlay{
+  max-width:850px;
+  z-index:2;
+}
+
+.hero-tag{
+  color:#ff7a00;
+  font-weight:800;
+  letter-spacing:3px;
+  margin-bottom:18px;
+  font-size:0.9rem;
+}
+
+.hero h1{
+  font-size:clamp(4rem,8vw,7rem);
+  line-height:0.95;
+  font-weight:900;
+  margin-bottom:20px;
+}
+
+.hero h1 span{
+  color:#ff7a00;
+}
+
+.hero-description{
+  color:#ccc;
+  font-size:1.2rem;
+  line-height:1.7;
+  max-width:650px;
+  margin:auto;
+}
+
+.hero-buttons{
+  margin-top:35px;
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
 
 .secondary-btn{
   padding:12px 24px;
@@ -991,6 +1066,12 @@ body {
 /* =========================
    HERO SLIDER
 ========================= */
+
+.hero{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+}
 
 .hero-slider{
   width:100%;
@@ -2506,332 +2587,21 @@ html, body {
   }
 
 }
-/* =========================
-   GOOGLE FONTS
-========================= */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+/* Add this to your CSS */
 
-/* =========================
-   ROOT VARIABLES
-========================= */
-:root {
-  --accent: #ff6a00;
-  --accent-deep: #e85500;
-  --accent-glow: rgba(255, 106, 0, 0.18);
-  --bg: #080808;
-  --bg-card: rgba(255,255,255,0.03);
-  --border: rgba(255,255,255,0.06);
-  --border-hover: rgba(255,106,0,0.5);
-  --text: #f0f0f0;
-  --text-muted: #888;
-  --radius: 16px;
-  --radius-sm: 10px;
-  --transition: 0.35s cubic-bezier(0.25,0.8,0.25,1);
-}
-
-/* =========================
-   GLOBAL RESET
-========================= */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* =========================
-   SCROLLBAR
-========================= */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #0c0c0c; }
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 99px;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 10px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
-
-  background: rgba(8, 8, 8, 0.6);
-  backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid var(--border);
-  transition: background var(--transition), padding var(--transition);
-}
-
-.navbar.scrolled {
-  background: rgba(8, 8, 8, 0.92);
-}
-
-.logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.4rem;
-  letter-spacing: 0.04em;
-  background: linear-gradient(135deg, #fff 40%, var(--accent));
- 
-  -webkit-text-fill-color: transparent;
-}
-
-/* =========================
-   HERO SLIDER (FINAL CLEAN VERSION)
-========================= */
 .hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100dvh; /* dynamic viewport height — fixes mobile browser gap */
+  padding-top: 80px;  /* offset for fixed navbar */
 }
 
 .hero-slider {
-  display: flex;
-  width: 300%;
-  height: 100%;
-  animation: slideHero 15s infinite;
+  height: 100vh;
+  height: 100dvh; /* same fix for the slider */
 }
 
 .hero-slide {
-  width: 100%;
-  flex-shrink: 0;
   height: 100vh;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 120px 8%;
-}
-
-.hero-content {
-  max-width: 750px;
-  text-align: center;
-}
-
-.hero-tag {
-  color: var(--accent);
-  font-weight: 700;
-  letter-spacing: 3px;
-  margin-bottom: 20px;
-}
-
-.hero h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.5rem, 8vw, 6.5rem);
-  line-height: 1;
-}
-
-.hero h1 span {
-  color: var(--accent);
-}
-
-.hero-description {
-  margin-top: 18px;
-  font-size: 1.2rem;
-  color: #d0d0d0;
-  line-height: 1.7;
-}
-
-.hero-buttons {
-  margin-top: 30px;
-}
-
-/* SLIDER ANIMATION */
-@keyframes slideHero {
-  0%, 30% { transform: translateX(0); }
-  35%, 65% { transform: translateX(-100%); }
-  70%, 95% { transform: translateX(-200%); }
-  100% { transform: translateX(0); }
-}
-
-/* =========================
-   PRODUCTS
-========================= */
-.products {
-  padding: 120px 8%;
-}
-
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 28px;
-}
-
-.product-card {
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  transition: 0.3s;
-}
-
-.product-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--border-hover);
-}
-
-.product-card img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-}
-
-/* =========================
-   PRICE BOX (DEDUPED)
-========================= */
-.price-box {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.old-price {
-  text-decoration: line-through;
-  color: #888;
-  font-size: 0.95rem;
-}
-
-.new-price {
-  color: var(--accent);
-  font-weight: 800;
-  font-size: 1.2rem;
-}
-
-.discount-tag {
-  background: rgba(255,106,0,0.15);
-  border: 1px solid rgba(255,106,0,0.3);
-  color: var(--accent);
-  font-size: 0.65rem;
-  padding: 3px 8px;
-  border-radius: 999px;
-}
-
-/* =========================
-   CART SIDEBAR
-========================= */
-.cart-sidebar {
-  position: fixed;
-  top: 0;
-  right: -380px;
-  width: 340px;
-  height: 100vh;
-  background: #000;
-  padding: 20px;
-  transition: right 0.4s ease;
-  overflow-y: auto;
-  z-index: 9999;
-}
-
-.cart-sidebar.active {
-  right: 0;
-}
-
-.cart-items {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.cart-item {
-  display: flex;
-  gap: 12px;
-  background: #181818;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-/* =========================
-   SHOP PAGE
-========================= */
-.shop-page {
-  padding: 140px 8% 100px;
-}
-
-.shop-hero {
-  min-height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  padding: 80px 8%;
-  background:
-    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
-    url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1600");
-  background-size: cover;
-}
-
-/* =========================
-   BEST SELLERS
-========================= */
-.best-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-}
-
-.best-card {
-  background: #121212;
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.06);
-  transition: 0.4s;
-}
-
-.best-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(255,106,0,0.35);
-}
-
-/* =========================
-   WHY SECTION
-========================= */
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-}
-
-.why-card {
-  background: #111;
-  padding: 35px;
-  border-radius: 20px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 992px) {
-  .best-grid { grid-template-columns: 1fr 1fr; }
-  .why-grid { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 600px) {
-  .hero-description { font-size: 1rem; }
-  .best-grid { grid-template-columns: 1fr; }
-  .why-grid { grid-template-columns: 1fr; }
+  height: 100dvh;
+  min-height: unset; /* prevent conflicts */
 }
