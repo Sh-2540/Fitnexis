@@ -2569,21 +2569,4 @@ html, body {
     height: 320px !important;
     object-fit: cover;
   }
-
-  /* REMOVE SIDE SHIFT */
-  body,
-  html {
-    overflow-x: hidden;
-  }
-
-  .navbar,
-  .hero,
-  .shop-page,
-  .products,
-  .best-sellers,
-  .why-section {
-    width: 100%;
-    overflow-x: hidden;
-  }
-
 }
