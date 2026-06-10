@@ -2348,730 +2348,375 @@ html, body {
   background: #080808;
   color: white;
 }
-
 /* =========================================
-   ABOUT PAGE PREMIUM
+   ABOUT PAGE
 ========================================= */
 
-.about-page {
-  width: 100%;
-  overflow-x: hidden;
-  background: #080808;
-  color: white;
+.about-page{
+  width:100%;
+  overflow-x:hidden;
+  background:#080808;
+  color:white;
 }
 
 /* =========================================
-   HERO
+   HERO SECTION
 ========================================= */
 
-.about-hero {
-  position: relative;
+.about-hero{
+  min-height:100vh;
 
-  min-height: 100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align:center;
 
-  text-align: center;
+  padding:120px 8%;
 
-  padding: 120px 8%;
+  background-size:cover;
+  background-position:center;
 
-  background:
-    linear-gradient(
-      rgba(0,0,0,0.82),
-      rgba(0,0,0,0.92)
-    ),
-    url("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1600");
-
-  background-size: cover;
-  background-position: center;
-
-  overflow: hidden;
+  position:relative;
 }
 
-.about-hero::before {
-  content: "";
+.about-hero::before{
+  content:"";
 
-  position: absolute;
-  inset: 0;
+  position:absolute;
+  inset:0;
 
   background:
     radial-gradient(
       circle at center,
       rgba(255,106,0,0.12),
-      transparent 60%
+      transparent 65%
     );
 }
 
-.about-hero-content {
-  position: relative;
-  z-index: 2;
+.about-hero-content{
+  position:relative;
+  z-index:2;
 
-  max-width: 950px;
+  max-width:950px;
 }
 
-.about-mini {
-  color: #ff7a00;
+.about-mini-tag{
+  color:#ff7a00;
 
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size:0.9rem;
+  font-weight:800;
 
-  letter-spacing: 4px;
+  letter-spacing:4px;
 
-  margin-bottom: 20px;
+  margin-bottom:20px;
 }
 
-.about-hero h1 {
-  font-size: clamp(3.5rem, 8vw, 7rem);
+.about-hero h1{
+  font-size:clamp(3.5rem,8vw,7rem);
 
-  line-height: 0.95;
+  line-height:0.95;
 
-  font-weight: 900;
+  font-weight:900;
 
-  margin-bottom: 30px;
+  margin-bottom:28px;
 }
 
-.about-hero h1 span {
-  color: #ff7a00;
+.about-hero h1 span{
+  color:#ff7a00;
 }
 
-.about-description {
-  max-width: 760px;
+.about-hero-text{
+  color:#d2d2d2;
 
-  margin: auto;
+  font-size:1.15rem;
 
-  color: #d0d0d0;
+  line-height:2;
 
-  font-size: 1.2rem;
-
-  line-height: 2;
-}
-
-/* =========================================
-   STORY SECTION
-========================================= */
-
-.about-story {
-  padding: 140px 8%;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  gap: 70px;
-
-  align-items: center;
-}
-
-.about-story-image img {
-  width: 100%;
-  height: 720px;
-
-  object-fit: cover;
-
-  border-radius: 30px;
-}
-
-.about-story-content {
-  max-width: 650px;
-}
-
-.story-tag {
-  color: #ff7a00;
-
-  font-size: 0.85rem;
-  font-weight: 700;
-
-  letter-spacing: 3px;
-
-  margin-bottom: 20px;
-}
-
-.about-story-content h2 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-
-  line-height: 1.05;
-
-  font-weight: 900;
-
-  margin-bottom: 25px;
-}
-
-.about-story-content h2 span {
-  color: #ff7a00;
-}
-
-.about-story-content p {
-  color: #b8b8b8;
-
-  font-size: 1.05rem;
-
-  line-height: 2;
-
-  margin-bottom: 20px;
+  margin-bottom:20px;
 }
 
 /* =========================================
-   THEORY SECTION
+   ABOUT SECTION
 ========================================= */
 
-.about-theory {
-  padding: 0 8% 140px;
+.about-section{
+  padding:120px 8%;
 }
 
-.theory-container {
-  background: rgba(255,255,255,0.03);
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
 
-  border: 1px solid rgba(255,255,255,0.06);
+  gap:70px;
 
-  border-radius: 32px;
-
-  padding: 70px;
-
-  backdrop-filter: blur(10px);
+  align-items:center;
 }
 
-.theory-tag {
-  color: #ff7a00;
+.about-image-box img{
+  width:100%;
+  height:720px;
 
-  font-size: 0.85rem;
-  font-weight: 700;
+  object-fit:cover;
 
-  letter-spacing: 3px;
-
-  margin-bottom: 20px;
+  border-radius:30px;
 }
 
-.theory-container h2 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-
-  line-height: 1.05;
-
-  margin-bottom: 30px;
-
-  font-weight: 900;
+.about-content{
+  max-width:650px;
 }
 
-.theory-container h2 span {
-  color: #ff7a00;
+.section-tag{
+  color:#ff7a00;
+
+  font-size:0.85rem;
+  font-weight:800;
+
+  letter-spacing:3px;
+
+  margin-bottom:18px;
 }
 
-.theory-container p {
-  color: #bdbdbd;
+.about-content h2{
+  font-size:clamp(2.8rem,5vw,4.8rem);
 
-  font-size: 1.08rem;
+  line-height:1;
 
-  line-height: 2;
+  font-weight:900;
 
-  margin-bottom: 22px;
+  margin-bottom:28px;
+}
+
+.about-content h2 span{
+  color:#ff7a00;
+}
+
+.about-content p{
+  color:#bdbdbd;
+
+  font-size:1.05rem;
+
+  line-height:2;
+
+  margin-bottom:20px;
 }
 
 /* =========================================
-   IMAGE STRIP
+   PHILOSOPHY SECTION
 ========================================= */
 
-.about-gallery {
-  padding: 0 8% 140px;
-
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-
-  gap: 25px;
+.philosophy-section{
+  padding:0 8% 120px;
 }
 
-.about-gallery img {
-  width: 100%;
-  height: 420px;
+.philosophy-container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
 
-  object-fit: cover;
+  gap:70px;
 
-  border-radius: 28px;
+  align-items:center;
 
-  transition: 0.4s ease;
+  background:rgba(255,255,255,0.03);
+
+  border:1px solid rgba(255,255,255,0.06);
+
+  border-radius:32px;
+
+  padding:60px;
 }
 
-.about-gallery img:hover {
-  transform: translateY(-8px);
+.philosophy-text h2{
+  font-size:clamp(2.5rem,5vw,4.5rem);
+
+  line-height:1;
+
+  margin-bottom:25px;
+
+  font-weight:900;
+}
+
+.philosophy-text h2 span{
+  color:#ff7a00;
+}
+
+.philosophy-text p{
+  color:#bdbdbd;
+
+  line-height:2;
+
+  font-size:1.05rem;
+
+  margin-bottom:20px;
+}
+
+.philosophy-image img{
+  width:100%;
+  height:650px;
+
+  object-fit:cover;
+
+  border-radius:28px;
+}
+
+/* =========================================
+   VALUES
+========================================= */
+
+.about-values{
+  padding:0 8% 120px;
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  gap:25px;
+}
+
+.value-card{
+  background:#111;
+
+  border:1px solid rgba(255,255,255,0.06);
+
+  padding:45px 35px;
+
+  border-radius:24px;
+
+  transition:0.35s ease;
+}
+
+.value-card:hover{
+  transform:translateY(-8px);
+
+  border-color:rgba(255,106,0,0.35);
 
   box-shadow:
-    0 20px 50px rgba(0,0,0,0.45);
+    0 20px 40px rgba(0,0,0,0.4);
+}
+
+.value-card h3{
+  font-size:1.5rem;
+
+  margin-bottom:18px;
+
+  font-weight:800;
+}
+
+.value-card p{
+  color:#a9a9a9;
+
+  line-height:1.9;
+
+  font-size:1rem;
 }
 
 /* =========================================
-   FINAL BOTTOM
+   TABLET
 ========================================= */
 
-.about-bottom {
-  position: relative;
+@media(max-width:992px){
 
-  padding: 140px 8%;
+  .about-grid{
+    grid-template-columns:1fr;
+  }
 
-  text-align: center;
+  .philosophy-container{
+    grid-template-columns:1fr;
+  }
 
-  background:
-    linear-gradient(
-      rgba(0,0,0,0.85),
-      rgba(0,0,0,0.95)
-    ),
-    url("https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1600");
+  .about-values{
+    grid-template-columns:1fr;
+  }
 
-  background-size: cover;
-  background-position: center;
-}
+  .about-image-box img,
+  .philosophy-image img{
+    height:500px;
+  }
 
-.about-bottom-content {
-  position: relative;
-  z-index: 2;
-
-  max-width: 900px;
-  margin: auto;
-}
-
-.about-bottom h2 {
-  font-size: clamp(3rem, 6vw, 5rem);
-
-  line-height: 1;
-
-  margin-bottom: 30px;
-
-  font-weight: 900;
-}
-
-.about-bottom h2 span {
-  color: #ff7a00;
-}
-
-.about-bottom p {
-  color: #d0d0d0;
-
-  line-height: 2;
-
-  font-size: 1.1rem;
 }
 
 /* =========================================
-   RESPONSIVE
+   MOBILE
 ========================================= */
 
-@media (max-width: 992px) {
+@media(max-width:768px){
 
-  .about-story {
-    grid-template-columns: 1fr;
+  .about-hero{
+    padding:120px 5% 90px;
   }
 
-  .about-gallery {
-    grid-template-columns: 1fr;
+  .about-hero h1{
+    font-size:3.2rem;
   }
 
-  .about-story-image img {
-    height: 500px;
+  .about-hero-text{
+    font-size:1rem;
+    line-height:1.9;
   }
 
-}
-
-@media (max-width: 768px) {
-
-  .about-hero {
-    padding: 120px 5%;
+  .about-section{
+    padding:80px 5%;
   }
 
-  .about-hero h1 {
-    font-size: 3rem;
+  .about-grid{
+    gap:40px;
   }
 
-  .about-description {
-    font-size: 1rem;
+  .about-image-box img{
+    height:380px;
+
+    border-radius:22px;
   }
 
-  .about-story {
-    padding: 90px 5%;
+  .about-content h2{
+    font-size:2.5rem;
   }
 
-  .about-theory {
-    padding: 0 5% 90px;
+  .about-content p{
+    font-size:0.98rem;
   }
 
-  .theory-container {
-    padding: 40px 25px;
+  .philosophy-section{
+    padding:0 5% 80px;
   }
 
-  .about-gallery {
-    padding: 0 5% 90px;
+  .philosophy-container{
+    padding:25px;
+
+    gap:35px;
+
+    border-radius:24px;
   }
 
-  .about-gallery img {
-    height: 320px;
+  .philosophy-text h2{
+    font-size:2.3rem;
   }
 
-  .about-bottom {
-    padding: 100px 5%;
+  .philosophy-text p{
+    font-size:0.98rem;
   }
 
-  .about-bottom h2 {
-    font-size: 2.7rem;
+  .philosophy-image img{
+    height:380px;
+
+    border-radius:22px;
   }
 
-}
-/* =========================================
-   ABOUT PAGE PREMIUM
-========================================= */
+  .about-values{
+    padding:0 5% 90px;
 
-.about-page {
-  width: 100%;
-  overflow-x: hidden;
-  background: #080808;
-  color: white;
-}
-
-/* =========================================
-   HERO
-========================================= */
-
-.about-hero {
-  position: relative;
-
-  min-height: 100vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  padding: 120px 8%;
-
-  background:
-    linear-gradient(
-      rgba(0,0,0,0.82),
-      rgba(0,0,0,0.92)
-    ),
-    url("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1600");
-
-  background-size: cover;
-  background-position: center;
-
-  overflow: hidden;
-}
-
-.about-hero::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255,106,0,0.12),
-      transparent 60%
-    );
-}
-
-.about-hero-content {
-  position: relative;
-  z-index: 2;
-
-  max-width: 950px;
-}
-
-.about-mini {
-  color: #ff7a00;
-
-  font-size: 0.9rem;
-  font-weight: 700;
-
-  letter-spacing: 4px;
-
-  margin-bottom: 20px;
-}
-
-.about-hero h1 {
-  font-size: clamp(3.5rem, 8vw, 7rem);
-
-  line-height: 0.95;
-
-  font-weight: 900;
-
-  margin-bottom: 30px;
-}
-
-.about-hero h1 span {
-  color: #ff7a00;
-}
-
-.about-description {
-  max-width: 760px;
-
-  margin: auto;
-
-  color: #d0d0d0;
-
-  font-size: 1.2rem;
-
-  line-height: 2;
-}
-
-/* =========================================
-   STORY SECTION
-========================================= */
-
-.about-story {
-  padding: 140px 8%;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  gap: 70px;
-
-  align-items: center;
-}
-
-.about-story-image img {
-  width: 100%;
-  height: 720px;
-
-  object-fit: cover;
-
-  border-radius: 30px;
-}
-
-.about-story-content {
-  max-width: 650px;
-}
-
-.story-tag {
-  color: #ff7a00;
-
-  font-size: 0.85rem;
-  font-weight: 700;
-
-  letter-spacing: 3px;
-
-  margin-bottom: 20px;
-}
-
-.about-story-content h2 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-
-  line-height: 1.05;
-
-  font-weight: 900;
-
-  margin-bottom: 25px;
-}
-
-.about-story-content h2 span {
-  color: #ff7a00;
-}
-
-.about-story-content p {
-  color: #b8b8b8;
-
-  font-size: 1.05rem;
-
-  line-height: 2;
-
-  margin-bottom: 20px;
-}
-
-/* =========================================
-   THEORY SECTION
-========================================= */
-
-.about-theory {
-  padding: 0 8% 140px;
-}
-
-.theory-container {
-  background: rgba(255,255,255,0.03);
-
-  border: 1px solid rgba(255,255,255,0.06);
-
-  border-radius: 32px;
-
-  padding: 70px;
-
-  backdrop-filter: blur(10px);
-}
-
-.theory-tag {
-  color: #ff7a00;
-
-  font-size: 0.85rem;
-  font-weight: 700;
-
-  letter-spacing: 3px;
-
-  margin-bottom: 20px;
-}
-
-.theory-container h2 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-
-  line-height: 1.05;
-
-  margin-bottom: 30px;
-
-  font-weight: 900;
-}
-
-.theory-container h2 span {
-  color: #ff7a00;
-}
-
-.theory-container p {
-  color: #bdbdbd;
-
-  font-size: 1.08rem;
-
-  line-height: 2;
-
-  margin-bottom: 22px;
-}
-
-/* =========================================
-   IMAGE STRIP
-========================================= */
-
-.about-gallery {
-  padding: 0 8% 140px;
-
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-
-  gap: 25px;
-}
-
-.about-gallery img {
-  width: 100%;
-  height: 420px;
-
-  object-fit: cover;
-
-  border-radius: 28px;
-
-  transition: 0.4s ease;
-}
-
-.about-gallery img:hover {
-  transform: translateY(-8px);
-
-  box-shadow:
-    0 20px 50px rgba(0,0,0,0.45);
-}
-
-/* =========================================
-   FINAL BOTTOM
-========================================= */
-
-.about-bottom {
-  position: relative;
-
-  padding: 140px 8%;
-
-  text-align: center;
-
-  background:
-    linear-gradient(
-      rgba(0,0,0,0.85),
-      rgba(0,0,0,0.95)
-    ),
-    url("https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1400");
-
-  background-size: cover;
-  background-position: center;
-}
-
-.about-bottom-content {
-  position: relative;
-  z-index: 2;
-
-  max-width: 900px;
-  margin: auto;
-}
-
-.about-bottom h2 {
-  font-size: clamp(3rem, 6vw, 5rem);
-
-  line-height: 1;
-
-  margin-bottom: 30px;
-
-  font-weight: 900;
-}
-
-.about-bottom h2 span {
-  color: #ff7a00;
-}
-
-.about-bottom p {
-  color: #d0d0d0;
-
-  line-height: 2;
-
-  font-size: 1.1rem;
-}
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
-@media (max-width: 992px) {
-
-  .about-story {
-    grid-template-columns: 1fr;
+    gap:20px;
   }
 
-  .about-gallery {
-    grid-template-columns: 1fr;
+  .value-card{
+    padding:30px 25px;
   }
 
-  .about-story-image img {
-    height: 500px;
+  .value-card h3{
+    font-size:1.3rem;
   }
 
-}
-
-@media (max-width: 768px) {
-
-  .about-hero {
-    padding: 120px 5%;
-  }
-
-  .about-hero h1 {
-    font-size: 3rem;
-  }
-
-  .about-description {
-    font-size: 1rem;
-  }
-
-  .about-story {
-    padding: 90px 5%;
-  }
-
-  .about-theory {
-    padding: 0 5% 90px;
-  }
-
-  .theory-container {
-    padding: 40px 25px;
-  }
-
-  .about-gallery {
-    padding: 0 5% 90px;
-  }
-
-  .about-gallery img {
-    height: 320px;
-  }
-
-  .about-bottom {
-    padding: 100px 5%;
-  }
-
-  .about-bottom h2 {
-    font-size: 2.7rem;
+  .value-card p{
+    font-size:0.95rem;
   }
 
 }

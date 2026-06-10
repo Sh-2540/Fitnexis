@@ -5,163 +5,183 @@ function About() {
     <div className="about-page">
 
       {/* HERO SECTION */}
-      <section className="about-hero">
-
-        <div className="about-hero-overlay"></div>
-
+      <section
+        className="about-hero"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.88)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1400')",
+        }}
+      >
         <div className="about-hero-content">
 
-          <p className="about-mini">
-            PERFORMANCE • DISCIPLINE • POWER
+          <p className="about-mini-tag">
+            FITNEXIS PERFORMANCE
           </p>
 
           <h1>
             BUILT FOR THE
-            <span> NEXT GENERATION </span>
-            OF ATHLETES
+            <span> MODERN ATHLETE</span>
           </h1>
 
-          <p className="about-description">
-            Fitnexis creates premium fitness experiences for people
-            who demand strength, confidence, and performance in every
-            part of life.
+          <p className="about-hero-text">
+            Fitnexis was created for people who believe fitness is not
+            temporary motivation — it is a lifestyle built through
+            consistency, discipline, and self-respect.
           </p>
 
-          <div className="about-buttons">
-            <button className="primary-btn">
-              Explore Products
-            </button>
+          <p className="about-hero-text">
+            Every athlete has a different journey, but the mindset remains
+            the same: improve every single day. Our vision is to create a
+            premium fitness experience that inspires confidence, ambition,
+            and performance.
+          </p>
 
-            <button className="secondary-btn">
-              Our Story
-            </button>
+        </div>
+      </section>
+
+      {/* STORY SECTION */}
+      <section className="about-section">
+
+        <div className="about-grid">
+
+          {/* LEFT IMAGE */}
+          <div className="about-image-box">
+
+            <img
+              src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1400"
+              alt="Gym Training"
+            />
+
+          </div>
+
+          {/* RIGHT CONTENT */}
+          <div className="about-content">
+
+            <p className="section-tag">
+              OUR STORY
+            </p>
+
+            <h2>
+              MORE THAN A
+              <span> FITNESS BRAND</span>
+            </h2>
+
+            <p>
+              Fitnexis was built with a simple vision — to combine premium
+              fitness culture with modern lifestyle aesthetics.
+            </p>
+
+            <p>
+              In today’s world, fitness is not only about lifting weights
+              or completing workouts. It is about building mental strength,
+              confidence, focus, and long-term discipline.
+            </p>
+
+            <p>
+              We believe athletes deserve products and experiences that
+              match their dedication. From beginners entering the gym for
+              the first time to experienced athletes pushing their limits,
+              Fitnexis is designed to support every stage of the journey.
+            </p>
+
+            <p>
+              Our mission is to create a community that values consistency,
+              growth, and self-improvement over shortcuts and temporary
+              motivation.
+            </p>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* PHILOSOPHY */}
+      <section className="philosophy-section">
+
+        <div className="philosophy-container">
+
+          <div className="philosophy-text">
+
+            <p className="section-tag">
+              OUR PHILOSOPHY
+            </p>
+
+            <h2>
+              DISCIPLINE CREATES
+              <span> RESULTS</span>
+            </h2>
+
+            <p>
+              Real transformation is not built overnight. It is built
+              through thousands of small decisions repeated every day.
+            </p>
+
+            <p>
+              The early mornings, the difficult workouts, the sacrifice,
+              the consistency — these moments shape not only the body,
+              but the mindset behind it.
+            </p>
+
+            <p>
+              Fitnexis represents people who choose progress over excuses,
+              effort over comfort, and long-term growth over temporary
+              satisfaction.
+            </p>
+
+          </div>
+
+          <div className="philosophy-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1400"
+              alt="Athlete Training"
+            />
+
           </div>
 
         </div>
 
       </section>
 
-      {/* BRAND STORY */}
-      <section className="about-story">
+      {/* VALUES */}
+      <section className="about-values">
 
-        <div className="about-story-left">
+        <div className="value-card">
 
-          <img
-            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1400"
-            alt="Fitness"
-          />
-
-        </div>
-
-        <div className="about-story-right">
-
-          <p className="section-tag">
-            OUR MISSION
-          </p>
-
-          <h2>
-            ELEVATING
-            <span> HUMAN PERFORMANCE </span>
-          </h2>
+          <h3>
+            Premium Standards
+          </h3>
 
           <p>
-            Fitnexis was created with one vision:
-            helping people unlock their strongest version.
-          </p>
-
-          <p>
-            We combine premium fitness products,
-            modern design, and athlete-level quality
-            to deliver a brand experience that inspires
-            discipline and confidence every single day.
-          </p>
-
-          <div className="about-stats">
-
-            <div className="stat-box">
-              <h3>50K+</h3>
-              <p>Customers</p>
-            </div>
-
-            <div className="stat-box">
-              <h3>120+</h3>
-              <p>Products</p>
-            </div>
-
-            <div className="stat-box">
-              <h3>4.9★</h3>
-              <p>Ratings</p>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* FEATURES */}
-      <section className="about-features">
-
-        <div className="feature-card">
-
-          <div className="feature-icon">⚡</div>
-
-          <h3>Premium Quality</h3>
-
-          <p>
-            Every product is carefully selected
-            for durability, performance, and style.
+            Every detail matters. We focus on quality, design,
+            durability, and performance-driven experiences.
           </p>
 
         </div>
 
-        <div className="feature-card">
+        <div className="value-card">
 
-          <div className="feature-icon">🚚</div>
-
-          <h3>Fast Delivery</h3>
+          <h3>
+            Athlete Mindset
+          </h3>
 
           <p>
-            Secure and reliable shipping
-            across India with smooth tracking.
+            We support individuals who want to improve physically,
+            mentally, and emotionally through discipline.
           </p>
 
         </div>
 
-        <div className="feature-card">
+        <div className="value-card">
 
-          <div className="feature-icon">🔥</div>
-
-          <h3>Built For Athletes</h3>
-
-          <p>
-            Designed for gym lovers,
-            athletes, and high performers.
-          </p>
-
-        </div>
-
-      </section>
-
-      {/* FINAL SECTION */}
-      <section className="about-bottom">
-
-        <div className="about-bottom-content">
-
-          <h2>
-            YOUR FITNESS
-            <span> JOURNEY </span>
-            STARTS HERE
-          </h2>
+          <h3>
+            Modern Performance
+          </h3>
 
           <p>
-            Join thousands of athletes building strength,
-            confidence, and discipline with Fitnexis.
+            Fitnexis combines fitness culture with modern aesthetics
+            to create a clean and premium identity.
           </p>
-
-          <button className="primary-btn">
-            Start Shopping
-          </button>
 
         </div>
 
