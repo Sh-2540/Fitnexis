@@ -41,7 +41,14 @@ export default function Contact() {
         <div className="contact-card">
 
           <h2>Location</h2>
-          <p>Fitness First Gym, Near Shanti Nagar Bus Stop, Gandhi Nagar, Uday Colony, Makhmalabad, Nashik – 422003, Maharashtra, India</p>
+          <p>
+  Fitness First Gym,<br />
+  Near Shanti Nagar Bus Stop,<br />
+  Gandhi Nagar, Uday Colony,<br />
+  Makhmalabad, Nashik – 422003,<br />
+  Maharashtra, India
+</p>
+          
 
         </div>
 

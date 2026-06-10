@@ -485,6 +485,27 @@ body {
 }
 
 /* MOBILE */
+/* Mobile */
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px 5% 50px;
+  }
+
+  .contact-card {
+    padding: 25px;
+  }
+
+  .contact-hero {
+    padding: 50px 5%;
+  }
+
+  .contact-card p {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
 
 /* =========================
    FILTER BAR
