@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function Navbar({ cartCount, openCart }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,26 +38,38 @@ export default function Navbar({ cartCount, openCart }) {
         {/* Right Side */}
         <div className="nav-right">
 
-          {/* Desktop Cart */}
-          <button
-            className="primary-btn cart-btn"
-            onClick={openCart}
-          >
-            Cart ({cartCount})
-          </button>
+  {/* Mobile Cart Icon */}
+  <button
+    className="mobile-cart-btn"
+    onClick={openCart}
+  >
+    <FaShoppingCart />
+    {cartCount > 0 && (
+      <span className="cart-badge">
+        {cartCount}
+      </span>
+    )}
+  </button>
 
-          {/* Hamburger */}
-          <button
-            className={`hamburger ${menuOpen ? "open" : ""}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+  {/* Desktop Cart Button */}
+  <button
+    className="primary-btn cart-btn"
+    onClick={openCart}
+  >
+    Cart ({cartCount})
+  </button>
 
-        </div>
+  {/* Hamburger */}
+  <button
+    className={`hamburger ${menuOpen ? "open" : ""}`}
+    onClick={() => setMenuOpen(!menuOpen)}
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
+</div>
       </nav>
 
       {/* Dark Overlay */}
