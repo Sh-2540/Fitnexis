@@ -1,25 +1,18 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function Navbar({
-  cartCount,
-  openCart
-}) {
-
+export default function Navbar({ cartCount, openCart }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
-
       <nav className="navbar">
 
-        <h1 className="logo">
-          Fitnexis
-        </h1>
+        {/* Logo */}
+        <h1 className="logo">Fitnexis</h1>
 
-        {/* DESKTOP NAV */}
+        {/* Desktop Navigation */}
         <ul className="nav-links">
-
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -39,20 +32,20 @@ export default function Navbar({
           <li>
             <Link to="/login">Login</Link>
           </li>
-
         </ul>
 
-        {/* RIGHT SIDE */}
+        {/* Right Side */}
         <div className="nav-right">
 
+          {/* Desktop Cart */}
           <button
-            className="primary-btn"
+            className="primary-btn cart-btn"
             onClick={openCart}
           >
             Cart ({cartCount})
           </button>
 
-          {/* HAMBURGER */}
+          {/* Hamburger */}
           <button
             className={`hamburger ${menuOpen ? "open" : ""}`}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -66,14 +59,16 @@ export default function Navbar({
 
       </nav>
 
-      {/* OVERLAY */}
+      {/* Dark Overlay */}
       <div
         className={`mobile-overlay ${menuOpen ? "active" : ""}`}
         onClick={() => setMenuOpen(false)}
       ></div>
 
-      {/* MOBILE DRAWER */}
-      <div className={`mobile-drawer ${menuOpen ? "active" : ""}`}>
+      {/* Mobile Drawer */}
+      <div
+        className={`mobile-drawer ${menuOpen ? "active" : ""}`}
+      >
 
         <ul className="mobile-links">
 
@@ -107,10 +102,22 @@ export default function Navbar({
             </Link>
           </li>
 
+          {/* Mobile Cart */}
+          <li>
+            <button
+              className="primary-btn"
+              onClick={() => {
+                openCart();
+                setMenuOpen(false);
+              }}
+            >
+              Cart ({cartCount})
+            </button>
+          </li>
+
         </ul>
 
       </div>
-
     </>
   );
 }
