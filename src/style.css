@@ -1067,40 +1067,7 @@ body {
    HERO SLIDER
 ========================= */
 
-.hero{
-  position:relative;
-  height:100vh;
-  overflow:hidden;
-}
 
-.hero-slider{
-  width:100%;
-  height:100%;
-  display:flex;
-  overflow: hidden;
-
-  animation:slideHero 15s infinite;
-}
-
-.hero-slide{
-  width:100%;
-  height:100vh;
-
-  background-size:cover;
-  background-position:center;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:120px 8%;
-  flex-shrink:0;
-}
-
-.hero-content{
-  max-width:750px;
-  text-align:center;
-}
 
 .hero-tag{
   color:#ff7a00;
@@ -1110,28 +1077,11 @@ body {
   font-size:0.9rem;
 }
 
-.hero h1{
-  font-size:6rem;
-  line-height:0.95;
-  font-weight:900;
-  margin-bottom:20px;
-}
-
 .hero h1 span{
   color:#ff7a00;
 }
 
-.hero-description{
-  color:#d0d0d0;
-  font-size:1.2rem;
-  line-height:1.7;
-  max-width:650px;
-  margin:auto;
-}
 
-.hero-buttons{
-  margin-top:30px;
-}
 
 @keyframes slideHero{
 
@@ -1166,17 +1116,6 @@ body {
 
 /* MOBILE */
 
-@media(max-width:768px){
-
-  .hero h1{
-    font-size:3.5rem;
-  }
-
-  .hero-description{
-    font-size:1rem;
-  }
-
-}
 /* =========================
    SHOP PAGE
 ========================= */
@@ -2568,5 +2507,78 @@ html, body {
   .product-card img {
     height: 320px !important;
     object-fit: cover;
+  }
+}
+.hero {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+.hero-slider {
+  display: flex;
+  height: 100%;
+  animation: slideHero 15s infinite;
+}
+
+.hero-slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  padding: 0 20px;
+}
+.hero-content {
+  max-width: 800px;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  line-height: 1.1;
+  font-weight: 900;
+}
+
+.hero-description {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.7;
+  margin-top: 16px;
+}
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+@media (max-width: 768px) {
+  .hero {
+    height: 85vh;
+  }
+
+  .hero-content {
+    padding: 16px;
+  }
+
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-tag {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .primary-btn {
+    width: 100%;
+    max-width: 220px;
   }
 }
