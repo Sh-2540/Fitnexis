@@ -72,12 +72,14 @@ export default function Navbar({ cartCount, openCart }) {
 </div>
       </nav>
 
-      {/* Dark Overlay */}
-      <div
-        className={`mobile-overlay ${menuOpen ? "active" : ""}`}
-        onClick={() => setMenuOpen(false)}
-      ></div>
+  {/* Dark Overlay */}
+{menuOpen && (
 
+<div
+  className="mobile-overlay"
+  onClick={() => setMenuOpen(false)}
+></div>
+)}
       {/* Mobile Drawer */}
       <div
         className={`mobile-drawer ${menuOpen ? "active" : ""}`}
