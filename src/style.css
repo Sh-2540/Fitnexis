@@ -1280,7 +1280,89 @@ body {
 .checkout-btn:hover {
   background: #ff5e00;
 }
+/* ===========================
+   MOBILE RESPONSIVE
+=========================== */
 
+@media (max-width: 768px) {
+
+  .checkout-page {
+    padding: 90px 16px 30px;
+  }
+
+  .checkout-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .checkout-left,
+  .checkout-right {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .checkout-right {
+    position: static;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+
+  .item img {
+    width: 75px;
+    height: 75px;
+    flex-shrink: 0;
+  }
+
+  .item div {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .item h4 {
+    font-size: 16px;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .item p {
+    font-size: 13px;
+  }
+
+  .item span {
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .coupon-box {
+    flex-direction: column;
+  }
+
+  .coupon-box input,
+  .coupon-box button,
+  .checkout-btn {
+    width: 100%;
+  }
+
+  .checkout-left h2,
+  .checkout-right h3 {
+    font-size: 30px;
+  }
+
+  .row {
+    font-size: 16px;
+  }
+
+  .total {
+    font-size: 20px;
+  }
+}
 /* RESPONSIVE */
  
 .billing-page {
