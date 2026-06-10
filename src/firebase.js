@@ -3,13 +3,13 @@ import { getAuth, GoogleAuthProvider , signInWithPopup } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCO7prQ8SjIsrtMdRibpQJyRv4YZS33VZM",
-  authDomain: "fitnexis-d30c7.firebaseapp.com",
-  projectId: "fitnexis-d30c7",
-  storageBucket: "fitnexis-d30c7.firebasestorage.app",
-  messagingSenderId: "12482854565",
-  appId: "1:12482854565:web:736298275f12bcb4c6974c",
-  measurementId: "G-0WXDGM1ZLN",
+  apiKey: "AIzaSyBT-govl_WEMD4qriuIH_ae6pooVBFZRfQ",
+  authDomain: "fitnexis-01.firebaseapp.com",
+  projectId: "fitnexis-01",
+  storageBucket: "fitnexis-01.firebasestorage.app",
+  messagingSenderId: "1041529689644",
+  appId: "1:1041529689644:web:01928ddef0723ae85ba389",
+  measurementId: "G-FEGWJKRWCD"
 };
   // Initialize Firebase
 const app = initializeApp(firebaseConfig);
