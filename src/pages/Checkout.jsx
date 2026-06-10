@@ -15,7 +15,7 @@ function Checkout({ cart }) {
   );
 
   // SHIPPING LOGIC
- const shipping = baseSubtotal > 2000 ? 0 : 49;
+ const shipping = baseSubtotal > 2000 ? 0 : 79;
       
 
   // APPLY COUPON (ON BASE PRICE ONLY)
