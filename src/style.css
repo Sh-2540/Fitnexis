@@ -1063,62 +1063,6 @@ body {
 /* MOBILE */
 
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}
-
-.navbar button {
-  width: auto;
-  background: transparent;
-}
-.cart-btn {
-  background:rgb(227, 120, 5);
-  color: rgb(213, 112, 18);
-  padding: 8px 14px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  width: auto;
-}
-.login-page {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: linear-gradient(135deg, #131518, #090909);
-  font-family: Arial, sans-serif;
-}
-
-/* Glass card */
-.login-card {
-  width: 360px;
-  padding: 30px;
-
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-
-  border-radius: 18px;
-  box-shadow: 0 20px 60px rgba(60, 59, 59, 0.35);
-
-  text-align: center;
-  animation: fadeIn 0.4s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 .category-overlay button,
 .category-overlay .primary-btn {
   width: fit-content !important;
