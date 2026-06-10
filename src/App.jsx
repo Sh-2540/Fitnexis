@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Payment from "./pages/Payment";
 import Navbar from "./components/Navbar";
-import Login from "./pages/Login";
+import About from "./pages/About";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Products from "./pages/Products";
@@ -113,6 +113,7 @@ export default function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/billing" element={<Billing />} />
         <Route path="/Payment" element={<Payment/>} />
+        <Route path="/about" element={<About />} />
 
         <Route path="/products" element={<Products addToCart={addToCart} />} />
         <Route path="/product/:id" element={<ProductDetails addToCart={addToCart} />} />
@@ -122,11 +123,6 @@ export default function App() {
   element={<Checkout cart={cart} />}
 />
         
-        {/* 🔐 LOGIN ROUTE PROTECTION */}
-        <Route
-          path="/login"
-          element={user ? <Navigate to="/" /> : <Login />}
-        />
       </Routes>
     </>
   );
