@@ -1,129 +1,201 @@
-import { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import Payment from "./pages/Payment";
+import { useState } from "react";
+
+import {
+  Routes,
+  Route
+} from "react-router-dom";
+
+import "./style.css";
+
+/* COMPONENTS */
 import Navbar from "./components/Navbar";
-import About from "./pages/About";
+import CartSidebar from "./components/CartSidebar";
+
+/* PAGES */
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 import Checkout from "./pages/Checkout";
-import "./style.css";
-import CartSidebar from "./components/CartSidebar";
-import { auth } from "./firebase";
-import { onAuthStateChanged } from "firebase/auth";
 import Billing from "./pages/Billing";
+import Payment from "./pages/Payment";
+
 export default function App() {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+
+  /* =========================
+     CART STATE
+  ========================= */
 
   const [cart, setCart] = useState([]);
-  const [cartOpen, setCartOpen] = useState(false);
- 
 
-  // 🔥 AUTH LISTENER
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (u) => {
-      setUser(u);
-      setLoading(false);
-    });
+  const [cartOpen, setCartOpen] =
+    useState(false);
 
-    return () => unsub();
-  }, []);
+  /* =========================
+     ADD TO CART
+  ========================= */
 
-  // ⏳ LOADING SCREEN
-  if (loading) {
-    return <h2 style={{ textAlign: "center", marginTop: "50px" }}>Loading...</h2>;
-  }
-
-  // 🛒 ADD TO CART
   const addToCart = (product) => {
+
     setCart((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
+
+      const existing =
+        prev.find(
+          (item) =>
+            item.id === product.id
+        );
 
       if (existing) {
+
         return prev.map((item) =>
+
           item.id === product.id
-            ? { ...item, qty: item.qty + 1 }
+
+            ? {
+                ...item,
+                qty: item.qty + 1
+              }
+
             : item
         );
       }
 
-      return [...prev, { ...product, qty: 1 }];
+      return [
+        ...prev,
+        {
+          ...product,
+          qty: 1
+        }
+      ];
     });
 
     setCartOpen(true);
   };
 
-  // 💰 TOTAL PRICE
-  const total = cart.reduce(
-    (acc, item) => acc + item.price * item.qty,
-    0
-  );
+  /* =========================
+     TOTAL
+  ========================= */
+
+  const total =
+    cart.reduce(
+
+      (acc, item) =>
+
+        acc +
+        item.price * item.qty,
+
+      0
+    );
 
   return (
+
     <>
-      {/* NAVBAR */}
+
+      {/* =========================
+          NAVBAR
+      ========================= */}
+
       <Navbar
+
         cartCount={cart.length}
-        openCart={() => setCartOpen(true)}
-        user={user}
+
+        openCart={() =>
+          setCartOpen(true)
+        }
+
       />
 
-      {/* CART SIDEBAR */}
-      <div className={cartOpen ? "cart-sidebar active" : "cart-sidebar"}>
-        
-        <CartSidebar
-  cart={cart}
-  setCart={setCart}
-  cartOpen={cartOpen}
-  setCartOpen={setCartOpen}
-  total={total}
-/>
-        
-        <div className="cart-items">
-          {cart.length === 0 ? (
-            <p className="empty-cart">Cart is empty</p>
-          ) : (
-            cart.map((item, index) => (
-              <div className="cart-item" key={index}>
-                <img src={item.image} alt={item.name} />
+      {/* =========================
+          CART SIDEBAR
+      ========================= */}
 
-                <div>
-                  <h4>{item.name}</h4>
-                  <p>
-                    ₹{item.price} × {item.qty}
-                  </p>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
+      <CartSidebar
 
-        <div className="cart-bottom">
-          <h3>Total: ₹{total}</h3>
-          <button className="primary-btn">Checkout</button>
-        </div>
-      </div>
+        cart={cart}
 
-      {/* ROUTES */}
+        setCart={setCart}
+
+        cartOpen={cartOpen}
+
+        setCartOpen={setCartOpen}
+
+        total={total}
+
+      />
+
+      {/* =========================
+          ROUTES
+      ========================= */}
+
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/billing" element={<Billing />} />
-        <Route path="/Payment" element={<Payment/>} />
-        <Route path="/about" element={<About />} />
 
-        <Route path="/products" element={<Products addToCart={addToCart} />} />
-        <Route path="/product/:id" element={<ProductDetails addToCart={addToCart} />} />
-        <Route path="/contact" element={<Contact />} />
         <Route
-  path="/checkout"
-  element={<Checkout cart={cart} />}
-/>
-        
+          path="/"
+          element={<Home />}
+        />
+
+        <Route
+          path="/shop"
+          element={<Shop />}
+        />
+
+        <Route
+          path="/products"
+          element={
+            <Products
+              addToCart={addToCart}
+            />
+          }
+        />
+
+        <Route
+
+          path="/product/:id"
+
+          element={
+
+            <ProductDetails
+              addToCart={addToCart}
+            />
+
+          }
+        />
+
+        <Route
+          path="/contact"
+          element={<Contact />}
+        />
+
+        <Route
+          path="/about"
+          element={<About />}
+        />
+
+        <Route
+
+          path="/checkout"
+
+          element={
+            <Checkout
+              cart={cart}
+            />
+          }
+        />
+
+        <Route
+          path="/billing"
+          element={<Billing />}
+        />
+
+        <Route
+          path="/payment"
+          element={<Payment />}
+        />
+
       </Routes>
+
     </>
   );
 }
