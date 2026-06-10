@@ -27,11 +27,11 @@ export default function Navbar({ cartCount, openCart }) {
           </li>
 
           <li>
-            <Link to="/contact">Contact</Link>
+            <Link to="/about">About</Link>
           </li>
 
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
           </li>
         </ul>
 
@@ -106,13 +106,13 @@ export default function Navbar({ cartCount, openCart }) {
           </li>
 
           <li>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>
               Contact
             </Link>
           </li>
 
           <li>
-            <Link to="/about" onClick={() => setMenuOpen(false)}>
+            <Link to="/contact" onClick={() => setMenuOpen(false)}>
               About
             </Link>
           </li>
