@@ -26,7 +26,7 @@ function Checkout({ cart }) {
   
       // Make final payable amount ₹1
       setDiscount(baseSubtotal + shipping - 1);
-  
+   
       return;
     }
   
