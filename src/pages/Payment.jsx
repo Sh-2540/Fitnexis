@@ -138,25 +138,45 @@ function Payment() {
 
         image: "/logo.png",
 
-        handler: function (response) {
+        handler: async function (response) {
 
-          console.log(
-            "Payment Success:",
-            response
-          );
+  const order = {
 
-          // SAVE PAYMENT
-          localStorage.setItem(
-            "payment",
-            JSON.stringify(response)
-          );
+    paymentId:
+      response.razorpay_payment_id,
 
-          alert(
-            "Payment Successful!"
-          );
+    customer: form,
 
-          navigate("/success");
-        },
+    products: cart,
+
+    subtotal: baseSubtotal,
+
+    discount: discount,
+
+    shipping: shipping,
+
+    total: finalTotal,
+
+    delivery: delivery,
+
+    status: "Processing",
+
+    createdAt:
+      new Date().toISOString()
+  };
+
+  console.log(order);
+
+  localStorage.setItem(
+    "latestOrder",
+    JSON.stringify(order)
+  );
+
+  alert("Payment Successful!");
+
+  navigate("/success");
+},
+
 
         prefill: {
 
