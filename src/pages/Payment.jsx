@@ -127,7 +127,7 @@ function Payment() {
         // REPLACE WITH YOUR LIVE KEY
         key: "rzp_live_SyNyCgjxMxpZKz",
 
-        amount: amount,
+        amount: 100,
 
         currency: "INR",
 
