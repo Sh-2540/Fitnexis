@@ -21,20 +21,27 @@ function Checkout({ cart }) {
   // APPLY COUPON (ON BASE PRICE ONLY)
   const applyCoupon = () => {
     const code = coupon.trim().toUpperCase();
-
+  
+    if (code === "GOLDEN") {
+  
+      // Make final payable amount ₹1
+      setDiscount(baseSubtotal + shipping - 1);
+  
+      return;
+    }
+  
     const coupons = {
       NEXIS10: 0.10,
       NEXIS15: 0.15,
       NEXIS20: 0.20,
-      Shr100: 0.99
     };
-
+  
     if (!coupons[code]) {
       setDiscount(0);
       alert("Invalid coupon code");
       return;
     }
-
+  
     setDiscount(baseSubtotal * coupons[code]);
   };
 
