@@ -21,6 +21,7 @@ import About from "./pages/About";
 import Checkout from "./pages/Checkout";
 import Billing from "./pages/Billing";
 import Payment from "./pages/Payment";
+import Success from "./pages/Success";
 
 export default function App() {
 
@@ -193,6 +194,14 @@ export default function App() {
           path="/payment"
           element={<Payment />}
         />
+
+<Route
+  path="/success"
+  element={<Success />}
+/>
+
+
+
 
       </Routes>
 
