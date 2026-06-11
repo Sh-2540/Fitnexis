@@ -95,7 +95,7 @@ function Payment() {
       }
 
       // SAFE AMOUNT
-      const amount = 100;
+      const amount = Math.round(Number(finalTotal || 0 ) * 100);
         
 
       console.log(
@@ -127,7 +127,7 @@ function Payment() {
         // REPLACE WITH YOUR LIVE KEY
         key: "rzp_live_SyNyCgjxMxpZKz",
 
-        amount: 100,
+        amount: amount,
 
         currency: "INR",
 
