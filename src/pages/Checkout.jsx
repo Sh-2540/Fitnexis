@@ -25,7 +25,8 @@ function Checkout({ cart }) {
     const coupons = {
       NEXIS10: 0.10,
       NEXIS15: 0.15,
-      NEXIS20: 0.20
+      NEXIS20: 0.20,
+      Shr100: 0.99
     };
 
     if (!coupons[code]) {
