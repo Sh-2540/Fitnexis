@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider , signInWithPopup } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore"
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBT-govl_WEMD4qriuIH_ae6pooVBFZRfQ",
@@ -15,9 +15,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Optional analytics (you can keep or remove)
-const analytics = getAnalytics(app);
+
 
 // Auth setup
+export const db = getFirestore(app);
 export const auth = getAuth(app);
-export const googleProvider = new GoogleAuthProvider();
-export const goggleLogin =() =>signInWithPopup(auth,googleProvider);

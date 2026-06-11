@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { db } from "../firebase";
+import { collection,addDoc,serverTimestamp  } from "firebase/firestore";
 
 
 function Payment() {
@@ -93,10 +95,8 @@ function Payment() {
       }
 
       // SAFE AMOUNT
-      const amount =
-        Math.round(
-          Number(finalTotal || 0) * 100
-        );
+      const amount = 100;
+        
 
       console.log(
         "window.Razorpay =",
@@ -140,44 +140,51 @@ function Payment() {
 
         handler: async function (response) {
 
-  const order = {
-
-    paymentId:
-      response.razorpay_payment_id,
-
-    customer: form,
-
-    products: cart,
-
-    subtotal: baseSubtotal,
-
-    discount: discount,
-
-    shipping: shipping,
-
-    total: finalTotal,
-
-    delivery: delivery,
-
-    status: "Processing",
-
-    createdAt:
-      new Date().toISOString()
-  };
-
-  console.log(order);
-
-  localStorage.setItem(
-    "latestOrder",
-    JSON.stringify(order)
-  );
-
-  alert("Payment Successful!");
-
-  navigate("/success");
-},
-
-
+          try {
+        
+            await addDoc(
+              collection(db, "orders"),
+              {
+                paymentId:
+                  response.razorpay_payment_id,
+        
+                customer: form,
+        
+                products: cart,
+        
+                subtotal: baseSubtotal,
+        
+                discount: discount,
+        
+                shipping: shipping,
+        
+                total: finalTotal,
+        
+                delivery: delivery,
+        
+                status: "Processing",
+        
+                createdAt:
+                  serverTimestamp()
+              }
+            );
+        
+            alert("Payment Successful!");
+        
+            navigate("/success");
+        
+          } catch (error) {
+        
+            console.error(
+              "Firestore Error:",
+              error
+            );
+        
+            alert(
+              "Order saved failed"
+            );
+          }
+        },
         prefill: {
 
           name:
