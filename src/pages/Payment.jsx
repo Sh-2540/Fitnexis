@@ -220,6 +220,7 @@ function Payment() {
       };
 
       // CREATE RAZORPAY INSTANCE
+      console.log(options);
       const razorpay =
         new window.Razorpay(options);
 
