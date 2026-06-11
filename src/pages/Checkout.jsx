@@ -21,6 +21,7 @@ function Checkout({ cart }) {
   // APPLY COUPON (ON BASE PRICE ONLY)
   const applyCoupon = () => {
     const code = coupon.trim().toUpperCase();
+    console.log("Coupon:",code);
   
     if (code === "GOLDEN") {
   
