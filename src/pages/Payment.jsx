@@ -95,7 +95,7 @@ function Payment() {
       }
 
       // SAFE AMOUNT
-      const amount = Math.round(Number(finalTotal || 0 ) * 100);
+      const amount = 100;
         
 
       console.log(
@@ -145,7 +145,7 @@ function Payment() {
           alert("SUCCESS HANDLER FIRED");
         
         }
-        
+
       };
 
       // CREATE RAZORPAY INSTANCE
@@ -171,6 +171,7 @@ function Payment() {
       );
 
       // OPEN PAYMENT POPUP
+      console.log("OPENING RAZORPAY");
       razorpay.open();
 
     } catch (error) {
