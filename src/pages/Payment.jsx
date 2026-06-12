@@ -137,14 +137,13 @@ function Payment() {
           "Secure Order Payment",
 
         image: "/logo.png",
-        handler: async function (response) {
+        handler: async function(response) {
 
-          console.log("SUCCESS HANDLER FIRED");
           console.log(response);
-        
-          alert("SUCCESS HANDLER FIRED");
+          alert(response.razorpay_payment_id);
         
         }
+        
 
       };
 
