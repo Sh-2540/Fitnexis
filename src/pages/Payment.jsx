@@ -118,7 +118,7 @@ function Payment() {
 
         alert("Invalid amount");
 
-        return;
+        return
       }
 
       // RAZORPAY OPTIONS
@@ -137,86 +137,15 @@ function Payment() {
           "Secure Order Payment",
 
         image: "/logo.png",
-
         handler: async function (response) {
 
-          try {
+          console.log("SUCCESS HANDLER FIRED");
+          console.log(response);
         
-            await addDoc(
-              collection(db, "orders"),
-              {
-                paymentId:
-                  response.razorpay_payment_id,
+          alert("SUCCESS HANDLER FIRED");
         
-                customer: form,
-        
-                products: cart,
-        
-                subtotal: baseSubtotal,
-        
-                discount: discount,
-        
-                shipping: shipping,
-        
-                total: finalTotal,
-        
-                delivery: delivery,
-        
-                status: "Processing",
-        
-                createdAt:
-                  serverTimestamp()
-              }
-            );
-        
-            alert("Payment Successful!");
-        
-            navigate("/success");
-        
-          } catch (error) {
-        
-            console.error(
-              "Firestore Error:",
-              error
-            );
-        
-            alert(
-              "Order saved failed"
-            );
-          }
-        },
-        prefill: {
-
-          name:
-            form.name || "",
-
-          email:
-            form.email || "",
-
-          contact:
-            form.phone || ""
-        },
-
-        notes: {
-
-          address:
-            form.address || ""
-        },
-
-        theme: {
-
-          color: "#ff7a00"
-        },
-
-        modal: {
-
-          ondismiss: function () {
-
-            console.log(
-              "Payment popup closed"
-            );
-          }
         }
+        
       };
 
       // CREATE RAZORPAY INSTANCE
