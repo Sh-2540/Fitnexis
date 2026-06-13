@@ -22,6 +22,7 @@ import Checkout from "./pages/Checkout";
 import Billing from "./pages/Billing";
 import Payment from "./pages/Payment";
 import Success from "./pages/Success";
+import AdminOrders from "./pages/AdminOrder";
 
 export default function App() {
 
@@ -193,6 +194,10 @@ export default function App() {
         <Route
           path="/payment"
           element={<Payment />}
+        />
+        <Route
+          path="/admin-orders"
+          element={<AdminOrders />}
         />
 
 <Route
