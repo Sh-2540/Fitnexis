@@ -137,13 +137,53 @@ function Payment() {
           "Secure Order Payment",
 
         image: "/logo.png",
-        handler: async function(response) {
+        handler: async function (response) {
 
-          console.log(response);
-          alert(response.razorpay_payment_id);
+          try {
         
+            await addDoc(
+              collection(db, "orders"),
+              {
+                paymentId:
+                  response.razorpay_payment_id,
+        
+                customer: form,
+        
+                products: cart,
+        
+                subtotal: baseSubtotal,
+        
+                discount: discount,
+        
+                shipping: shipping,
+        
+                total: finalTotal,
+        
+                delivery: delivery,
+        
+                status: "Processing",
+        
+                createdAt:
+                  serverTimestamp()
+              }
+            );
+        
+            alert("Payment Successful!");
+        
+            navigate("/success");
+        
+          } catch (error) {
+        
+            console.error(
+              "Firestore Error:",
+              error
+            );
+        
+            alert(
+              "Order save failed"
+            );
+          }
         }
-        
 
       };
 
