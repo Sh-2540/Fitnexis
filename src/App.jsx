@@ -22,7 +22,7 @@ import Checkout from "./pages/Checkout";
 import Billing from "./pages/Billing";
 import Payment from "./pages/Payment";
 import Success from "./pages/Success";
-import AdminOrders from "./pages/AdminOrder";
+import AdminOrders from "./pages/AdminOrders";
 
 export default function App() {
 
