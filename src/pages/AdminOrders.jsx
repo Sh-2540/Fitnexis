@@ -54,6 +54,14 @@ function AdminOrders() {
             {order.customer?.name}
           </h3>
 
+          <h4>Products:</h4>
+
+{order.products?.map((product, index) => (
+  <p key={index}>
+    {product.name} × {product.qty}
+  </p>
+))}
+
           <p>
             Phone:
             {order.customer?.phone}
