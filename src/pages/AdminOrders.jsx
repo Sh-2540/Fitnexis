@@ -109,10 +109,41 @@ function AdminOrders() {
             ₹{order.total}
           </p>
 
-          <p>
-            Status:
-            {order.status}
-          </p>
+          <div>
+
+  <p>Status:</p>
+
+  <select
+    value={
+      order.status || "Processing"
+    }
+    onChange={(e) =>
+      updateStatus(
+        order.id,
+        e.target.value
+      )
+    }
+  >
+
+    <option value="Processing">
+      Processing
+    </option>
+
+    <option value="Packed">
+      Packed
+    </option>
+
+    <option value="Shipped">
+      Shipped
+    </option>
+
+    <option value="Delivered">
+      Delivered
+    </option>
+
+  </select>
+
+</div>
 
         </div>
 
