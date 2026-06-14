@@ -1,11 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs ,doc ,updateDoc } from "firebase/firestore";
 
 function AdminOrders() {
 
   const [orders, setOrders] = useState([]);
 
+  const updateStatus = async (id, newStatus) => {
+
+    try {
+  
+      await updateDoc(
+        doc(db, "orders", id),
+        {
+          status: newStatus
+        }
+      );
+  
+      setOrders(prev =>
+        prev.map(order =>
+          order.id === id
+            ? {
+                ...order,
+                status: newStatus
+              }
+            : order
+        )
+      );
+  
+    } catch (error) {
+  
+      console.error(
+        "Status Update Error:",
+        error
+      );
+  
+      alert("Failed to update status");
+    }
+  };
   useEffect(() => {
 
     const fetchOrders = async () => {
