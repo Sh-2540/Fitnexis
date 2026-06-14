@@ -20,8 +20,9 @@ function AdminOrders() {
           id: doc.id,
           ...doc.data()
         }));
+        console.log(data);
+        setOrders(data);
 
-      setOrders(data);
     };
 
     fetchOrders();
