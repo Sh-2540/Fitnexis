@@ -23,6 +23,8 @@ import Billing from "./pages/Billing";
 import Payment from "./pages/Payment";
 import Success from "./pages/Success";
 import AdminOrders from "./pages/AdminOrders";
+import TrackOrder from "./pages/TrackOrder";
+
 
 export default function App() {
 
@@ -199,6 +201,11 @@ export default function App() {
           path="/admin-orders"
           element={<AdminOrders />}
         />
+        <Route
+          path="/track-orders"
+          element={<TrackOrder />}
+        />
+
 
 <Route
   path="/success"
