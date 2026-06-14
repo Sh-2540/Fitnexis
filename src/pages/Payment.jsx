@@ -144,11 +144,14 @@ function Payment() {
             await addDoc(
               collection(db, "orders"),
               {
+
+                orderNumber: "FTX-" + Date.now(),
+                
                 paymentId:
                   response.razorpay_payment_id,
-        
+
                 customer: form,
-        
+            
                 products: cart,
         
                 subtotal: baseSubtotal,
