@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
+import { Navigate } from "react-router-dom";
 
 import {
   collection,
@@ -93,6 +94,19 @@ function AdminOrders() {
     fetchOrders();
 
   }, []);
+
+  if (
+    localStorage.getItem(
+      "adminLoggedIn"
+    ) !== "true"
+  ) {
+  
+    return (
+      <Navigate
+        to="/admin-login"
+      />
+    );
+  }
 
   return (
 

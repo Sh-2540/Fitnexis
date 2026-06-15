@@ -24,6 +24,7 @@ import Payment from "./pages/Payment";
 import Success from "./pages/Success";
 import AdminOrders from "./pages/AdminOrders";
 import TrackOrder from "./pages/TrackOrder";
+import AdminLogin from "./pages/AdminLogin";
 
 
 export default function App() {
@@ -205,6 +206,10 @@ export default function App() {
           path="/track-orders"
           element={<TrackOrder />}
         />
+        <Route
+  path="/admin-login"
+  element={<AdminLogin />}
+/>
 
 
 <Route
