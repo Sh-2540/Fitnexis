@@ -15,7 +15,7 @@ export default function Navbar({ cartCount, openCart }) {
         {/* Desktop Navigation */}
         <ul className="nav-links">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
           </li>
 
           <li>

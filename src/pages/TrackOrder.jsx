@@ -2,219 +2,215 @@ import React, { useState } from "react";
 import { db } from "../firebase";
 
 import {
-  collection,
-  getDocs,
+collection,
+getDocs
 } from "firebase/firestore";
 
 function TrackOrder() {
 
-  const [phone, setPhone] =
-    useState("");
+const [phone, setPhone] = useState("");
+const [orders, setOrders] = useState([]);
+const [loading, setLoading] = useState(false);
+const [searched, setSearched] = useState(false);
 
-  const [orders, setOrders] =
-    useState([]);
+const searchOrders = async () => {
 
-  const [loading, setLoading] =
-    useState(false);
+if (!phone.trim()) {
+  alert("Enter phone number");
+  return;
+}
 
-  const searchOrders = async () => {
+try {
 
-    try {
+  setLoading(true);
+  setSearched(true);
 
-      setLoading(true);
+  const snapshot =
+    await getDocs(
+      collection(db, "orders")
+    );
 
-      const querySnapshot =
-        await getDocs(
-          collection(db, "orders")
-        );
+  const data =
+    snapshot.docs
+      .map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      .filter(order =>
+        String(
+          order.customer?.phone || ""
+        ) === String(phone)
+      )
+      .reverse();
 
-      const data =
-        querySnapshot.docs
-          .map(doc => ({
-            id: doc.id,
-            ...doc.data()
-          }))
-          .filter(order =>
-            String(
-              order.customer?.phone
-            ) === String(phone)
-          );
+  setOrders(data);
 
-      setOrders(data);
+} catch (error) {
 
-    } catch (error) {
+  console.error(error);
 
-      console.error(
-        "Track Order Error:",
-        error
-      );
+  alert(
+    "Unable to fetch orders"
+  );
 
-      alert(
-        "Failed to fetch orders"
-      );
+} finally {
 
-    } finally {
+  setLoading(false);
+}
 
-      setLoading(false);
+};
+
+const getStatusEmoji = (
+status
+) => {
+
+switch (status) {
+
+  case "Processing":
+    return "🟡";
+
+  case "Packed":
+    return "📦";
+
+  case "Shipped":
+    return "🚚";
+
+  case "Delivered":
+    return "✅";
+
+  default:
+    return "⏳";
+}
+
+};
+
+return (
+
+<div>
+
+  <h1>
+    Track Order
+  </h1>
+
+  <input
+    type="text"
+    placeholder="Enter Mobile Number"
+    value={phone}
+    onChange={(e) =>
+      setPhone(
+        e.target.value
+      )
     }
-  };
+  />
 
-  return (
+  <button
+    onClick={searchOrders}
+  >
 
-    <div
-      style={{
-        padding: "100px 20px",
-        minHeight: "100vh",
-        background: "#000",
-        color: "#fff"
-      }}
-    >
+    {loading
+      ? "Searching..."
+      : "Track"}
 
-      <h1>
-        Track Your Orders
-      </h1>
+  </button>
+
+  {orders.length > 0 && (
+
+    <h2>
+      Orders Found:
+      {" "}
+      {orders.length}
+    </h2>
+
+  )}
+
+  {orders.map(order => (
+
+    <div key={order.id}>
+
+      <h3>
+
+        {getStatusEmoji(
+          order.status
+        )}
+
+        {" "}
+
+        {order.status}
+
+      </h3>
 
       <p>
-        Enter your mobile number
+        Customer:
+        {" "}
+        {order.customer?.name}
       </p>
 
-      <input
-        type="text"
-        placeholder="Mobile Number"
-        value={phone}
-        onChange={(e) =>
-          setPhone(
-            e.target.value
-          )
-        }
-        style={{
-          padding: "12px",
-          width: "300px",
-          maxWidth: "100%",
-          borderRadius: "8px",
-          border: "none",
-          marginTop: "10px"
-        }}
-      />
+      <p>
+        Phone:
+        {" "}
+        {order.customer?.phone}
+      </p>
 
-      <br />
-      <br />
+      <p>
+        Payment ID:
+        {" "}
+        {order.paymentId}
+      </p>
 
-      <button
-        onClick={searchOrders}
-        style={{
-          padding:
-            "12px 24px",
-          border: "none",
-          borderRadius: "8px",
-          cursor: "pointer"
-        }}
-      >
+      <p>
+        Total:
+        ₹{order.total}
+      </p>
 
-        {loading
-          ? "Searching..."
-          : "Track Orders"}
+      <p>
+        Delivery:
+        {" "}
+        {order.delivery}
+      </p>
 
-      </button>
+      <h4>
+        Products
+      </h4>
 
-      <br />
-      <br />
+      {order.products?.map(
+        (
+          product,
+          index
+        ) => (
 
-      {orders.length > 0 && (
+          <div
+            key={index}
+          >
 
-        <h2>
-          Found {orders.length}
-          {" "}
-          Orders
-        </h2>
+            {product.name}
+            {" × "}
+            {product.qty}
 
+          </div>
+
+        )
       )}
 
-      {orders.map(order => (
-
-        <div
-          key={order.id}
-          style={{
-            background: "#111",
-            padding: "20px",
-            marginTop: "20px",
-            borderRadius: "12px",
-            border:
-              "1px solid #333"
-          }}
-        >
-
-          <h3>
-            Status:
-            {" "}
-            {order.status}
-          </h3>
-
-          <p>
-            Payment ID:
-            {" "}
-            {order.paymentId}
-          </p>
-
-          <p>
-            Total:
-            {" "}
-            ₹{order.total}
-          </p>
-
-          <p>
-            Delivery:
-            {" "}
-            {order.delivery}
-          </p>
-
-          <p>
-            Customer:
-            {" "}
-            {order.customer?.name}
-          </p>
-
-          <h4>
-            Products
-          </h4>
-
-          {order.products?.map(
-            (
-              product,
-              index
-            ) => (
-
-              <p
-                key={index}
-              >
-
-                {product.name}
-                {" × "}
-                {product.qty}
-
-              </p>
-
-            )
-          )}
-
-        </div>
-
-      ))}
-
-      {!loading &&
-        phone &&
-        orders.length === 0 && (
-
-          <p>
-            No orders found
-            for this phone number.
-          </p>
-
-      )}
+      <hr />
 
     </div>
 
-  );
+  ))}
+
+  {searched &&
+    !loading &&
+    orders.length === 0 && (
+
+      <p>
+        No orders found
+        for this number.
+      </p>
+
+  )}
+
+</div>
+
+);
 }
 
 export default TrackOrder;
