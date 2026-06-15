@@ -4,6 +4,13 @@ import { collection, getDocs ,doc ,updateDoc } from "firebase/firestore";
 
 function AdminOrders() {
 
+  const totalRevenue =
+  orders.reduce(
+    (sum, order) =>
+      sum + Number(order.total || 0),
+    0
+  );
+
   const [orders, setOrders] = useState([]);
 
   const updateStatus = async (id, newStatus) => {
@@ -81,6 +88,15 @@ function AdminOrders() {
             borderRadius: "10px"
           }}
         >
+          <h2>
+  Total Orders:
+  {orders.length}
+</h2>
+
+<h2>
+  Revenue:
+  ₹{totalRevenue}
+</h2>
 
           <h3>
             {order.customer?.name}
