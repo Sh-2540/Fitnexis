@@ -11,7 +11,7 @@ function AdminLogin() {
   const handleLogin = () => {
 
     if (
-      password === "FitnexisAdmin123"
+      password === "Fitnexis@2026"
     ) {
 
       localStorage.setItem(
