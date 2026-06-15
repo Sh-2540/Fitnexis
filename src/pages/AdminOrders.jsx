@@ -1,29 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { collection, getDocs ,doc ,updateDoc } from "firebase/firestore";
+
+import {
+  collection,
+  getDocs,
+  doc,
+  updateDoc
+} from "firebase/firestore";
 
 function AdminOrders() {
 
-  const totalRevenue =
-  orders.reduce(
-    (sum, order) =>
-      sum + Number(order.total || 0),
-    0
-  );
-
   const [orders, setOrders] = useState([]);
 
-  const updateStatus = async (id, newStatus) => {
+  // TOTAL REVENUE
+  const totalRevenue =
+    orders.reduce(
+      (sum, order) =>
+        sum + Number(order.total || 0),
+      0
+    );
+
+  // UPDATE STATUS
+  const updateStatus = async (
+    id,
+    newStatus
+  ) => {
 
     try {
-  
+
       await updateDoc(
         doc(db, "orders", id),
         {
           status: newStatus
         }
       );
-  
+
       setOrders(prev =>
         prev.map(order =>
           order.id === id
@@ -34,34 +45,49 @@ function AdminOrders() {
             : order
         )
       );
-  
+
     } catch (error) {
-  
+
       console.error(
         "Status Update Error:",
         error
       );
-  
-      alert("Failed to update status");
+
+      alert(
+        "Failed to update status"
+      );
     }
   };
+
+  // FETCH ORDERS
   useEffect(() => {
 
     const fetchOrders = async () => {
 
-      const querySnapshot =
-        await getDocs(
-          collection(db, "orders")
-        );
+      try {
 
-      const data =
-        querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
+        const querySnapshot =
+          await getDocs(
+            collection(db, "orders")
+          );
+
+        const data =
+          querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }));
+
         console.log(data);
+
         setOrders(data);
 
+      } catch (error) {
+
+        console.error(
+          "Fetch Orders Error:",
+          error
+        );
+      }
     };
 
     fetchOrders();
@@ -70,100 +96,166 @@ function AdminOrders() {
 
   return (
 
-    <div style={{
-      padding: "100px 30px",
-      color: "white"
-    }}>
+    <div
+      style={{
+        padding: "100px 30px",
+        color: "white",
+        background: "#000",
+        minHeight: "100vh"
+      }}
+    >
 
-      <h1>Admin Orders</h1>
+      <h1>
+        Admin Orders
+      </h1>
 
-      {orders.map(order => (
+      <h2>
+        Total Orders:
+        {" "}
+        {orders.length}
+      </h2>
 
-        <div
-          key={order.id}
-          style={{
-            background: "#111",
-            padding: "20px",
-            marginBottom: "20px",
-            borderRadius: "10px"
-          }}
-        >
-          <h2>
-  Total Orders:
-  {orders.length}
-</h2>
+      <h2>
+        Revenue:
+        {" "}
+        ₹{totalRevenue}
+      </h2>
 
-<h2>
-  Revenue:
-  ₹{totalRevenue}
-</h2>
+      <br />
 
-          <h3>
-            {order.customer?.name}
-          </h3>
+      {orders.length === 0 ? (
 
-          <h4>Products:</h4>
+        <p>
+          No Orders Found
+        </p>
 
-{order.products?.map((product, index) => (
-  <p key={index}>
-    {product.name} × {product.qty}
-  </p>
-))}
+      ) : (
 
-          <p>
-            Phone:
-            {order.customer?.phone}
-          </p>
+        orders.map(order => (
 
-          <p>
-            Payment:
-            {order.paymentId}
-          </p>
+          <div
+            key={order.id}
+            style={{
+              background: "#111",
+              padding: "20px",
+              marginBottom: "20px",
+              borderRadius: "12px",
+              border:
+                "1px solid #333"
+            }}
+          >
 
-          <p>
-            Total:
-            ₹{order.total}
-          </p>
+            <h3>
+              {order.customer?.name}
+            </h3>
 
-          <div>
+            <p>
+              Phone:
+              {" "}
+              {order.customer?.phone}
+            </p>
 
-  <p>Status:</p>
+            <p>
+              Address:
+              {" "}
+              {order.customer?.address}
+            </p>
 
-  <select
-    value={
-      order.status || "Processing"
-    }
-    onChange={(e) =>
-      updateStatus(
-        order.id,
-        e.target.value
-      )
-    }
-  >
+            <p>
+              City:
+              {" "}
+              {order.customer?.city}
+            </p>
 
-    <option value="Processing">
-      Processing
-    </option>
+            <p>
+              State:
+              {" "}
+              {order.customer?.state}
+            </p>
 
-    <option value="Packed">
-      Packed
-    </option>
+            <p>
+              Pincode:
+              {" "}
+              {order.customer?.pincode}
+            </p>
 
-    <option value="Shipped">
-      Shipped
-    </option>
+            <hr />
 
-    <option value="Delivered">
-      Delivered
-    </option>
+            <h4>
+              Products
+            </h4>
 
-  </select>
+            {order.products?.map(
+              (product, index) => (
 
-</div>
+                <p key={index}>
 
-        </div>
+                  {product.name}
+                  {" × "}
+                  {product.qty}
 
-      ))}
+                </p>
+
+              )
+            )}
+
+            <hr />
+
+            <p>
+              Payment ID:
+              {" "}
+              {order.paymentId}
+            </p>
+
+            <p>
+              Total:
+              {" "}
+              ₹{order.total}
+            </p>
+
+            <div>
+
+              <p>
+                Status:
+              </p>
+
+              <select
+                value={
+                  order.status ||
+                  "Processing"
+                }
+                onChange={(e) =>
+                  updateStatus(
+                    order.id,
+                    e.target.value
+                  )
+                }
+              >
+
+                <option value="Processing">
+                  Processing
+                </option>
+
+                <option value="Packed">
+                  Packed
+                </option>
+
+                <option value="Shipped">
+                  Shipped
+                </option>
+
+                <option value="Delivered">
+                  Delivered
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+        ))
+      )}
 
     </div>
   );
