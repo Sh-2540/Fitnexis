@@ -1,42 +1,67 @@
 import React, { useState } from "react";
-import { collection, getDocs } from "firebase/firestore"
+import { db } from "../firebase";
+
+import {
+  collection,
+  getDocs
+} from "firebase/firestore";
 
 function TrackOrder() {
 
   const [phone, setPhone] = useState("");
-const handleSearch = async () => {
-  try {
-    console.log("🔥 Firebase call started");
+  const [orders, setOrders] = useState([]);
 
-    const snapshot = await getDocs(collection(db, "orders"));
+  const handleSearch = async () => {
 
-    console.log("📦 Total orders:", snapshot.docs.length);
+    try {
 
-    snapshot.docs.forEach(doc => {
-      console.log("ORDER:", doc.data());
-    });
+      console.log("Searching...");
 
-    alert("Firebase working");
+      const snapshot = await getDocs(
+        collection(db, "orders")
+      );
 
-  } catch (error) {
-    console.log("❌ ERROR:", error);
-    alert(error.message);
-  }
-};
+      const data = snapshot.docs
+        .map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        .filter(order =>
+          String(order.customer?.phone || "") === String(phone)
+        );
+
+      setOrders(data);
+
+      console.log("FOUND:", data);
+
+    } catch (error) {
+      console.log("ERROR:", error);
+      alert(error.message);
+    }
+  };
+
   return (
-    <div style={{ paddingTop: "150px", color: "white" }}>
+    <div style={{ padding: "100px", color: "white" }}>
 
       <h1>Track Order</h1>
 
       <input
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
-        placeholder="Phone Number"
+        placeholder="Enter phone number"
       />
 
       <button onClick={handleSearch}>
-        Search
+        Track
       </button>
+
+      {orders.map((order) => (
+        <div key={order.id}>
+          <h3>{order.status}</h3>
+          <p>{order.customer?.name}</p>
+          <p>{order.total}</p>
+        </div>
+      ))}
 
     </div>
   );
