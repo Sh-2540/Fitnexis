@@ -5,24 +5,27 @@ function TrackOrder() {
   const [phone, setPhone] = useState("");
 
   const handleSearch = async () => {
-    alert("BUTTON CLICKED");
-    console.log("BUTTON WORKS");
-    try {
-  
-      console.log("DB:", db);
-  
-      const snapshot = await getDocs(collection(db, "orders"));
-  
-      console.log("TOTAL DOCS:", snapshot.docs.length);
-  
-      snapshot.docs.forEach(d => {
-        console.log("DOC:", d.data());
-      });
-  
-    } catch (error) {
-      console.log("ERROR:", error);
-    }
-  };
+  try {
+    console.log("STARTED FIREBASE CALL");
+
+    const snapshot = await getDocs(collection(db, "orders"));
+
+    console.log("TOTAL DOCS:", snapshot.docs.length);
+
+    const data = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    console.log("DATA:", data);
+
+    alert("Orders fetched successfully");
+
+  } catch (error) {
+    console.log("FIREBASE ERROR:", error);
+    alert(error.message);
+  }
+};
   return (
     <div style={{ paddingTop: "150px", color: "white" }}>
 
