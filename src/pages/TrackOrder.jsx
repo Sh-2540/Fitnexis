@@ -5,6 +5,8 @@ function TrackOrder() {
   const [phone, setPhone] = useState("");
 
   const handleSearch = async () => {
+    alert("BUTTON CLICKED");
+    console.log("BUTTON WORKS");
     try {
   
       console.log("DB:", db);
