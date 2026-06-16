@@ -203,7 +203,7 @@ export default function App() {
           element={<AdminOrders />}
         />
         <Route
-          path="/track-orders"
+          path="/track-order"
           element={<TrackOrder />}
         />
         <Route
