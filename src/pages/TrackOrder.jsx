@@ -8,15 +8,26 @@ getDocs
 
 function TrackOrder() {
 
-const [phone, setPhone] = useState("");
-const [orders, setOrders] = useState([]);
-const [loading, setLoading] = useState(false);
-const [searched, setSearched] = useState(false);
+const [phone, setPhone] =
+useState("");
+
+const [orders, setOrders] =
+useState([]);
+
+const [loading, setLoading] =
+useState(false);
+
+const [searched, setSearched] =
+useState(false);
 
 const searchOrders = async () => {
 
 if (!phone.trim()) {
-  alert("Enter phone number");
+
+  alert(
+    "Enter phone number"
+  );
+
   return;
 }
 
@@ -86,13 +97,14 @@ switch (status) {
 
 return (
 
-<div>
+<div className="track-page">
 
-  <h1>
-    Track Order
+  <h1 className="track-title">
+    Track Your Order
   </h1>
 
   <input
+    className="track-input"
     type="text"
     placeholder="Enter Mobile Number"
     value={phone}
@@ -104,18 +116,23 @@ return (
   />
 
   <button
+    className="track-btn"
     onClick={searchOrders}
   >
 
     {loading
       ? "Searching..."
-      : "Track"}
+      : "Track Order"}
 
   </button>
 
   {orders.length > 0 && (
 
-    <h2>
+    <h2
+      style={{
+        textAlign: "center"
+      }}
+    >
       Orders Found:
       {" "}
       {orders.length}
@@ -125,9 +142,14 @@ return (
 
   {orders.map(order => (
 
-    <div key={order.id}>
+    <div
+      key={order.id}
+      className="order-card"
+    >
 
-      <h3>
+      <span
+        className={`order-status status-${order.status?.toLowerCase()}`}
+      >
 
         {getStatusEmoji(
           order.status
@@ -137,33 +159,44 @@ return (
 
         {order.status}
 
-      </h3>
+      </span>
 
       <p>
-        Customer:
+        <strong>
+          Customer:
+        </strong>
         {" "}
         {order.customer?.name}
       </p>
 
       <p>
-        Phone:
+        <strong>
+          Phone:
+        </strong>
         {" "}
         {order.customer?.phone}
       </p>
 
       <p>
-        Payment ID:
+        <strong>
+          Payment ID:
+        </strong>
         {" "}
         {order.paymentId}
       </p>
 
       <p>
-        Total:
+        <strong>
+          Total:
+        </strong>
+        {" "}
         ₹{order.total}
       </p>
 
       <p>
-        Delivery:
+        <strong>
+          Delivery:
+        </strong>
         {" "}
         {order.delivery}
       </p>
@@ -180,6 +213,7 @@ return (
 
           <div
             key={index}
+            className="order-product"
           >
 
             {product.name}
@@ -191,8 +225,6 @@ return (
         )
       )}
 
-      <hr />
-
     </div>
 
   ))}
@@ -201,7 +233,12 @@ return (
     !loading &&
     orders.length === 0 && (
 
-      <p>
+      <p
+        style={{
+          textAlign: "center",
+          marginTop: "30px"
+        }}
+      >
         No orders found
         for this number.
       </p>
