@@ -57,7 +57,7 @@ function TrackOrder() {
 
       {orders.map((order) => (
         <div key={order.id}>
-          <div>
+          
 
 <h3>🚚 {order.status}</h3>
 
@@ -65,7 +65,7 @@ function TrackOrder() {
 
 <p>💰 ₹{order.total}</p>
 
-</div>
+
         </div>
       ))}
 
