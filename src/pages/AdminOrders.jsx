@@ -59,6 +59,127 @@ function AdminOrders() {
       );
     }
   };
+  const approveCancel = async (id) => {
+
+    try {
+  
+      await updateDoc(
+        doc(db, "orders", id),
+        {
+          status: "Cancelled",
+          cancelStatus: "Approved"
+        }
+      );
+  
+      setOrders(prev =>
+        prev.map(order =>
+          order.id === id
+            ? {
+                ...order,
+                status: "Cancelled",
+                cancelStatus: "Approved"
+              }
+            : order
+        )
+      );
+  
+    } catch (error) {
+  
+      console.error(error);
+  
+    }
+  };
+  
+  const rejectCancel = async (id) => {
+  
+    try {
+  
+      await updateDoc(
+        doc(db, "orders", id),
+        {
+          cancelRequest: false,
+          cancelStatus: "Rejected"
+        }
+      );
+  
+      setOrders(prev =>
+        prev.map(order =>
+          order.id === id
+            ? {
+                ...order,
+                cancelRequest: false,
+                cancelStatus: "Rejected"
+              }
+            : order
+        )
+      );
+  
+    } catch (error) {
+  
+      console.error(error);
+  
+    }
+  };
+  
+  const approveReturn = async (id) => {
+  
+    try {
+  
+      await updateDoc(
+        doc(db, "orders", id),
+        {
+          returnStatus: "Approved"
+        }
+      );
+  
+      setOrders(prev =>
+        prev.map(order =>
+          order.id === id
+            ? {
+                ...order,
+                returnStatus: "Approved"
+              }
+            : order
+        )
+      );
+  
+    } catch (error) {
+  
+      console.error(error);
+  
+    }
+  };
+  
+  const rejectReturn = async (id) => {
+  
+    try {
+  
+      await updateDoc(
+        doc(db, "orders", id),
+        {
+          returnRequest: false,
+          returnStatus: "Rejected"
+        }
+      );
+  
+      setOrders(prev =>
+        prev.map(order =>
+          order.id === id
+            ? {
+                ...order,
+                returnRequest: false,
+                returnStatus: "Rejected"
+              }
+            : order
+        )
+      );
+  
+    } catch (error) {
+  
+      console.error(error);
+  
+    }
+  };
 
   // FETCH ORDERS
   useEffect(() => {
@@ -220,6 +341,104 @@ function AdminOrders() {
               {" "}
               {order.paymentId}
             </p>
+            {order.cancelRequest && (
+
+<div
+  style={{
+    background: "#2a2a2a",
+    padding: "10px",
+    borderRadius: "8px",
+    marginTop: "10px"
+  }}
+>
+
+  <h4>
+    ⚠ Cancellation Request
+  </h4>
+
+  <p>
+    Reason:
+    {" "}
+    {order.cancelReason}
+  </p>
+
+  <p>
+    Status:
+    {" "}
+    {order.cancelStatus}
+  </p>
+
+  <button
+    onClick={() =>
+      approveCancel(order.id)
+    }
+  >
+    ✅ Approve
+  </button>
+
+  <button
+    onClick={() =>
+      rejectCancel(order.id)
+    }
+    style={{
+      marginLeft: "10px"
+    }}
+  >
+    ❌ Reject
+  </button>
+
+</div>
+
+)}
+{order.returnRequest && (
+
+<div
+  style={{
+    background: "#2a2a2a",
+    padding: "10px",
+    borderRadius: "8px",
+    marginTop: "10px"
+  }}
+>
+
+  <h4>
+    🔄 Return Request
+  </h4>
+
+  <p>
+    Reason:
+    {" "}
+    {order.returnReason}
+  </p>
+
+  <p>
+    Status:
+    {" "}
+    {order.returnStatus}
+  </p>
+
+  <button
+    onClick={() =>
+      approveReturn(order.id)
+    }
+  >
+    ✅ Approve
+  </button>
+
+  <button
+    onClick={() =>
+      rejectReturn(order.id)
+    }
+    style={{
+      marginLeft: "10px"
+    }}
+  >
+    ❌ Reject
+  </button>
+
+</div>
+
+)}
 
             <p>
               Total:
