@@ -3,26 +3,22 @@ import React, { useState } from "react";
 function TrackOrder() {
 
   const [phone, setPhone] = useState("");
-
-  const handleSearch = async () => {
+const handleSearch = async () => {
   try {
-    console.log("STARTED FIREBASE CALL");
+    console.log("🔥 Firebase call started");
 
     const snapshot = await getDocs(collection(db, "orders"));
 
-    console.log("TOTAL DOCS:", snapshot.docs.length);
+    console.log("📦 Total orders:", snapshot.docs.length);
 
-    const data = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }));
+    snapshot.docs.forEach(doc => {
+      console.log("ORDER:", doc.data());
+    });
 
-    console.log("DATA:", data);
-
-    alert("Orders fetched successfully");
+    alert("Firebase working");
 
   } catch (error) {
-    console.log("FIREBASE ERROR:", error);
+    console.log("❌ ERROR:", error);
     alert(error.message);
   }
 };
