@@ -6,29 +6,21 @@ function TrackOrder() {
 
   const handleSearch = async () => {
     try {
-      console.log("Searching for:", phone);
+  
+      console.log("DB:", db);
   
       const snapshot = await getDocs(collection(db, "orders"));
   
-      const data = snapshot.docs
-        .map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
-        .filter(order =>
-          String(order.customer?.phone || "") === String(phone)
-        );
+      console.log("TOTAL DOCS:", snapshot.docs.length);
   
-      console.log("Matched Orders:", data);
-  
-      alert(`Found ${data.length} orders`);
+      snapshot.docs.forEach(d => {
+        console.log("DOC:", d.data());
+      });
   
     } catch (error) {
-      console.log(error);
-      alert("Error fetching orders");
+      console.log("ERROR:", error);
     }
   };
-
   return (
     <div style={{ paddingTop: "150px", color: "white" }}>
 
