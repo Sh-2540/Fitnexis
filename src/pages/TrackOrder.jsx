@@ -1,16 +1,30 @@
 import React from "react";
 
 function TrackOrder() {
+
   return (
+
     <div
       style={{
         paddingTop: "150px",
-        color: "white",
-        fontSize: "40px"
+        color: "white"
       }}
     >
-      TRACK ORDER PAGE
+
+      <h1>
+        Track Order
+      </h1>
+
+      <input
+        placeholder="Phone Number"
+      />
+
+      <button>
+        Search
+      </button>
+
     </div>
+
   );
 }
 
