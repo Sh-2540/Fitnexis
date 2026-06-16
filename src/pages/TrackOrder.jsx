@@ -1,200 +1,419 @@
 import React, { useState } from "react";
 import { db } from "../firebase";
+
 import {
-  collection,
-  getDocs,
-  doc,
-  updateDoc
+collection,
+getDocs,
+doc,
+updateDoc
 } from "firebase/firestore";
 
 function TrackOrder() {
 
-  const [phone, setPhone] = useState("");
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(false);
+const [phone, setPhone] = useState("");
+const [orders, setOrders] = useState([]);
+const [loading, setLoading] = useState(false);
 
-  // =============================
-  // SEARCH ORDERS
-  // =============================
-  const handleSearch = async () => {
+// ============================
+// SEARCH ORDERS
+// ============================
+const handleSearch = async () => {
 
-    try {
+try {
 
-      setLoading(true);
+  setLoading(true);
 
-      const snapshot = await getDocs(collection(db, "orders"));
+  const snapshot =
+    await getDocs(
+      collection(db, "orders")
+    );
 
-      const data = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
+  const data =
+    snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
 
-      const filtered = data.filter(order =>
-        String(order.customer?.phone || "") === String(phone)
-      );
+  const filtered =
+    data.filter(order =>
+      String(
+        order.customer?.phone || ""
+      ) === String(phone)
+    );
 
-      setOrders(filtered);
+  setOrders(filtered);
 
-    } catch (error) {
+} catch (error) {
 
-      console.log("ERROR:", error);
-      alert(error.message);
+  console.log(error);
+  alert(error.message);
 
-    } finally {
-      setLoading(false);
+} finally {
+
+  setLoading(false);
+
+}
+
+};
+
+// ============================
+// CANCEL REQUEST
+// ============================
+const cancelOrder = async (
+id,
+status
+) => {
+
+if (
+  status === "Shipped" ||
+  status === "Delivered" ||
+  status === "Cancelled"
+) {
+
+  alert(
+    "This order cannot be cancelled."
+  );
+
+  return;
+}
+
+const reason = prompt(
+  "Please enter cancellation reason:"
+);
+
+if (!reason) return;
+
+try {
+
+  await updateDoc(
+    doc(db, "orders", id),
+    {
+      cancelRequest: true,
+      cancelReason: reason,
+      cancelStatus: "Pending"
     }
-  };
+  );
 
-  // =============================
-  // CANCEL ORDER
-  // =============================
-  const cancelOrder = async (id, status) => {
+  setOrders(prev =>
+    prev.map(order =>
+      order.id === id
+        ? {
+            ...order,
+            cancelRequest: true,
+            cancelReason: reason,
+            cancelStatus: "Pending"
+          }
+        : order
+    )
+  );
 
-    if (status === "Shipped" || status === "Delivered") {
-      alert("Cannot cancel after shipping");
-      return;
+  alert(
+    "Cancellation request submitted."
+  );
+
+} catch (error) {
+
+  console.log(error);
+
+  alert(
+    "Failed to submit request."
+  );
+}
+
+};
+
+// ============================
+// RETURN REQUEST
+// ============================
+const requestReturn = async (
+id
+) => {
+
+const reason = prompt(
+  "Reason for return?"
+);
+
+if (!reason) return;
+
+try {
+
+  await updateDoc(
+    doc(db, "orders", id),
+    {
+      returnRequest: true,
+      returnReason: reason,
+      returnStatus: "Pending"
     }
+  );
 
-    try {
+  setOrders(prev =>
+    prev.map(order =>
+      order.id === id
+        ? {
+            ...order,
+            returnRequest: true,
+            returnReason: reason,
+            returnStatus: "Pending"
+          }
+        : order
+    )
+  );
 
-      await updateDoc(doc(db, "orders", id), {
-        status: "Cancelled"
-      });
+  alert(
+    "Return request submitted."
+  );
 
-      setOrders(prev =>
-        prev.map(order =>
-          order.id === id
-            ? { ...order, status: "Cancelled" }
-            : order
-        )
-      );
+} catch (error) {
 
-    } catch (error) {
-      console.log(error);
-      alert("Cancel failed");
+  console.log(error);
+
+  alert(
+    "Return request failed."
+  );
+}
+
+};
+
+// ============================
+// STATUS EMOJIS
+// ============================
+const getStatus = status => {
+
+switch (status) {
+
+  case "Processing":
+    return "🟡 Processing";
+
+  case "Packed":
+    return "📦 Packed";
+
+  case "Shipped":
+    return "🚚 Shipped";
+
+  case "Delivered":
+    return "✅ Delivered";
+
+  case "Cancelled":
+    return "❌ Cancelled";
+
+  default:
+    return "⏳ Pending";
+}
+
+};
+
+return (
+
+<div
+  style={{
+    padding: "100px 20px",
+    background: "#000",
+    color: "#fff",
+    minHeight: "100vh"
+  }}
+>
+
+  <h1>
+    📦 Track Your Orders
+  </h1>
+
+  <input
+    value={phone}
+    onChange={(e) =>
+      setPhone(
+        e.target.value
+      )
     }
-  };
+    placeholder="Enter Phone Number"
+    style={{
+      padding: "10px",
+      marginRight: "10px"
+    }}
+  />
 
-  // =============================
-  // STATUS EMOJI
-  // =============================
-  const getStatus = (status) => {
+  <button
+    onClick={handleSearch}
+  >
+    {loading
+      ? "Searching..."
+      : "Track"}
+  </button>
 
-    switch (status) {
+  <div>
 
-      case "Processing":
-        return "🟡 Processing";
+    {orders.map(order => (
 
-      case "Packed":
-        return "📦 Packed";
+      <div
+        key={order.id}
+        style={{
+          border:
+            "1px solid #444",
+          padding: "15px",
+          marginTop: "20px",
+          borderRadius: "10px",
+          background: "#111"
+        }}
+      >
 
-      case "Shipped":
-        return "🚚 Shipped";
+        <h3>
+          {getStatus(
+            order.status
+          )}
+        </h3>
 
-      case "Delivered":
-        return "✅ Delivered";
+        <p>
+          👤 {order.customer?.name}
+        </p>
 
-      case "Cancelled":
-        return "❌ Cancelled";
+        <p>
+          📞 {order.customer?.phone}
+        </p>
 
-      default:
-        return "⏳ Pending";
-    }
-  };
+        <p>
+          💰 ₹{order.total}
+        </p>
 
-  return (
+        <p>
+          💳 {order.paymentId}
+        </p>
 
-    <div style={{ padding: "100px", color: "white", background: "#000", minHeight: "100vh" }}>
+        {order.cancelRequest && (
 
-      <h1>📦 Track Your Orders</h1>
+          <div>
 
-      {/* INPUT */}
-      <input
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        placeholder="Enter Phone Number"
-        style={{ padding: "10px", marginRight: "10px" }}
-      />
+            <p>
+              ⚠ Cancellation Requested
+            </p>
 
-      {/* BUTTON */}
-      <button onClick={handleSearch}>
-        {loading ? "Searching..." : "Track"}
-      </button>
+            <p>
+              Reason:
+              {" "}
+              {order.cancelReason}
+            </p>
 
-      {/* ORDERS */}
-      <div>
-
-        {orders.map(order => (
-
-          <div
-            key={order.id}
-            style={{
-              border: "1px solid #444",
-              padding: "15px",
-              marginTop: "20px",
-              borderRadius: "10px",
-              background: "#111"
-            }}
-          >
-
-            {/* STATUS */}
-            <h3>{getStatus(order.status)}</h3>
-
-            {/* CUSTOMER */}
-            <p>👤 {order.customer?.name}</p>
-
-            {/* PHONE */}
-            <p>📞 {order.customer?.phone}</p>
-
-            {/* TOTAL */}
-            <p>💰 ₹{order.total}</p>
-
-            {/* PAYMENT */}
-            <p>💳 {order.paymentId}</p>
-
-            {/* PRODUCTS */}
-            <h4>🛍️ Products</h4>
-
-            {order.products?.map((p, index) => (
-              <p key={index}>
-                🧾 {p.name} × {p.qty}
-              </p>
-            ))}
-
-            {/* CANCEL BUTTON */}
-            {order.status !== "Shipped" &&
-              order.status !== "Delivered" &&
-              order.status !== "Cancelled" && (
-
-                <button
-                  onClick={() => cancelOrder(order.id, order.status)}
-                  style={{
-                    marginTop: "10px",
-                    background: "red",
-                    color: "white",
-                    padding: "8px",
-                    border: "none",
-                    cursor: "pointer"
-                  }}
-                >
-                  ❌ Cancel Order
-                </button>
-
-            )}
+            <p>
+              Status:
+              {" "}
+              {order.cancelStatus}
+            </p>
 
           </div>
 
-        ))}
+        )}
 
-        {/* NO ORDERS */}
-        {!loading && phone && orders.length === 0 && (
-          <p>No orders found</p>
+        {order.returnRequest && (
+
+          <div>
+
+            <p>
+              🔄 Return Requested
+            </p>
+
+            <p>
+              Reason:
+              {" "}
+              {order.returnReason}
+            </p>
+
+            <p>
+              Status:
+              {" "}
+              {order.returnStatus}
+            </p>
+
+          </div>
+
+        )}
+
+        <h4>
+          🛍️ Products
+        </h4>
+
+        {order.products?.map(
+          (p, index) => (
+
+            <p key={index}>
+              🧾 {p.name}
+              {" × "}
+              {p.qty}
+            </p>
+
+          )
+        )}
+
+        {!order.cancelRequest &&
+          order.status !==
+            "Shipped" &&
+          order.status !==
+            "Delivered" &&
+          order.status !==
+            "Cancelled" && (
+
+          <button
+            onClick={() =>
+              cancelOrder(
+                order.id,
+                order.status
+              )
+            }
+            style={{
+              marginTop: "10px",
+              background: "red",
+              color: "white",
+              padding: "8px",
+              border: "none",
+              cursor: "pointer"
+            }}
+          >
+            ❌ Request Cancellation
+          </button>
+
+        )}
+
+        {order.status ===
+          "Delivered" &&
+          !order.returnRequest && (
+
+          <button
+            onClick={() =>
+              requestReturn(
+                order.id
+              )
+            }
+            style={{
+              marginTop: "10px",
+              marginLeft: "10px",
+              background: "orange",
+              color: "white",
+              padding: "8px",
+              border: "none",
+              cursor: "pointer"
+            }}
+          >
+            🔄 Request Return
+          </button>
+
         )}
 
       </div>
 
-    </div>
-  );
+    ))}
+
+    {!loading &&
+      phone &&
+      orders.length === 0 && (
+
+      <p>
+        No orders found
+      </p>
+
+    )}
+
+  </div>
+
+</div>
+
+);
 }
 
 export default TrackOrder;
