@@ -40,8 +40,31 @@ function TrackOrder() {
     }
   };
   return (
-    <div style={{ padding: "100px", background: "white", color: "black" }}>
-      <h1>TRACK ORDER TEST</h1>
+    <div style={{ padding: "100px", color: "white" }}>
+  
+      <h1>Track Order</h1>
+  
+      <button onClick={handleSearch}>
+        Track
+      </button>
+  
+      {Array.isArray(orders) && orders.length > 0 ? (
+        orders.map((order) => (
+          <div key={order.id}>
+            <p>👤 {order.customer}</p>
+            <p>💰 ₹{order.total}</p>
+            <p>
+              {order.status === "Shipped" && "🚚 Shipped"}
+              {order.status === "Processing" && "🟡 Processing"}
+              {order.status === "Packed" && "📦 Packed"}
+              {order.status === "Delivered" && "✅ Delivered"}
+            </p>
+          </div>
+        ))
+      ) : (
+        <p>No orders found</p>
+      )}
+  
     </div>
   );
 }
