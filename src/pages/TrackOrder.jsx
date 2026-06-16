@@ -59,6 +59,13 @@ function TrackOrder() {
             {order.status === "Shipped" && "🚚 Shipped"}
             {order.status === "Delivered" && "✅ Delivered"}
           </h3>
+          <h4>🛒 Products:</h4>
+
+{order.products?.map((product, index) => (
+  <div key={index}>
+    🧾 {product.name} × {product.qty}
+  </div>
+))}
 
           <p>👤 {order.customer?.name}</p>
           <p>📞 {order.customer?.phone}</p>
