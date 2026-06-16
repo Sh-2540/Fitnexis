@@ -15,7 +15,7 @@ export default function Navbar({ cartCount, openCart }) {
         {/* Desktop Navigation */}
         <ul className="nav-links">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
           </li>
 
           <li>
@@ -88,7 +88,7 @@ export default function Navbar({ cartCount, openCart }) {
         <ul className="mobile-links">
 
           <li>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
+            <Link to="/home" onClick={() => setMenuOpen(false)}>
               Home
             </Link>
           </li>
