@@ -13,10 +13,7 @@ export default function Navbar({ cartCount = 0 }) {
       
       {/* LOGO */}
       <div className="logo">
-  <div className="top">FIT</div>
-  <div className="bottom">
-    NE<span>XiS</span>
-  </div>
+  FitNexis
 </div>
 
       {/* DESKTOP MENU */}
