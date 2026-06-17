@@ -2772,21 +2772,26 @@ html, body {
    BRAND LOGO
 ========================= */
 .logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.logo .top {
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  color: #bbb;
+}
+
+.logo .bottom {
   font-size: 1.6rem;
   font-weight: 900;
   color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
 
-.logo::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  background: #ff6a00;
-  border-radius: 50%;
-  box-shadow: 0 0 12px rgba(255, 106, 0, 0.7);
+.logo .bottom span {
+  color: #ff6a00;
 }
 
 

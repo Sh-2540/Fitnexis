@@ -13,8 +13,11 @@ export default function Navbar({ cartCount = 0 }) {
       
       {/* LOGO */}
       <div className="logo">
-        FITNEXIS
-      </div>
+  <div className="top">FIT</div>
+  <div className="bottom">
+    NE<span>XiS</span>
+  </div>
+</div>
 
       {/* DESKTOP MENU */}
       <ul className="nav-links">
