@@ -2740,92 +2740,166 @@ html, body {
 .remove-btn:hover {
   transform: scale(1.2);
 }
+/* =========================
+   MAIN NAVBAR
+========================= */
+
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: #111;
-  color: white;
-}
-
-/* LOGO */
-.logo {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-/* DESKTOP MENU */
-.desktop-menu {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-}
-
-.desktop-menu li a {
-  color: white;
-  text-decoration: none;
-}
-
-/* HIDE HAMBURGER ON DESKTOP */
-.menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 26px;
-}
-
-/* MOBILE MENU */
-.mobile-menu {
   position: fixed;
   top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100vh;
-  background: #111;
-  transition: 0.3s ease;
-  padding: 20px;
-  z-index: 999;
-}
-
-.mobile-menu.open {
   left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-/* CLOSE BUTTON */
-.close-btn {
-  background: none;
-  border: none;
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
   color: white;
-  font-size: 26px;
-  float: right;
+  letter-spacing: 1px;
 }
 
-/* MOBILE LIST */
-.mobile-menu ul {
-  margin-top: 60px;
+.logo span {
+  color: #00ff88;
+}
+
+/* =========================
+   DESKTOP LINKS
+========================= */
+
+.nav-links {
+  display: flex;
+  gap: 22px;
   list-style: none;
-  padding: 0;
 }
 
-.mobile-menu ul li {
-  padding: 15px 0;
-  border-bottom: 1px solid #222;
-}
-
-.mobile-menu ul li a {
-  color: white;
+.nav-links li a {
   text-decoration: none;
+  color: #ddd;
+  font-weight: 500;
+  transition: 0.3s;
+  position: relative;
 }
 
-/* RESPONSIVE */
+.nav-links li a:hover {
+  color: #00ff88;
+}
+
+/* underline animation */
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #00ff88;
+  transition: 0.3s;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* CART */
+.cart-icon {
+  position: relative;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #ff3b3b;
+  color: white;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* =========================
+   HAMBURGER
+========================= */
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu {
+  position: fixed;
+  top: 70px;
+  right: -100%;
+  width: 70%;
+  height: 100vh;
+  background: #0d0d0d;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  gap: 20px;
+  transition: 0.4s ease;
+  border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-menu a {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.mobile-menu a:hover {
+  color: #00ff88;
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 768px) {
-  .desktop-menu {
+
+  .nav-links {
     display: none;
   }
 
-  .menu-btn {
+  .hamburger {
     display: block;
   }
 }
