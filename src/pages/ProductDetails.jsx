@@ -313,7 +313,7 @@ function ProductDetails({ addToCart }) {
       addToCart({
         id: product.id,
         name: product.name,
-        price: selectedVariant?.price,
+        price: discountedPrice,
         image: `/${images[0]}`,
         qty: quantity,
         flavor: selectedFlavor,
