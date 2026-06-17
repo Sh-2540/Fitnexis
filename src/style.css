@@ -2918,3 +2918,22 @@ html, body {
     margin-left:0 !important;
   }
 }
+.cart-item {
+  position: relative;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.remove-btn:hover {
+  transform: scale(1.2);
+}
