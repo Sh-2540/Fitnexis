@@ -1450,6 +1450,7 @@ html, body {
   .shop-banner {
     min-height: 60vh;
     padding: 40px 20px;
+    margin-top: 0;
   }
 
   .banner-content h2 {
