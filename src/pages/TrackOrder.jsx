@@ -314,17 +314,17 @@ return (
           🛍️ Products
         </h4>
 
-        {order.products?.map(
-          (p, index) => (
-
-            <p key={index}>
-              🧾 {p.name}
-              {" × "}
-              {p.qty}
-            </p>
-
-          )
-        )}
+        {order.products?.map((p, index) => (
+  <p key={index}>
+    🧾 {p.name}
+    {" | "}
+    {p.size}
+    {" | "}
+    {p.flavor}
+    {" × "}
+    {p.qty}
+  </p>
+))}
 
         {!order.cancelRequest &&
           order.status !==

@@ -308,19 +308,18 @@ function AdminOrders() {
               Products
             </h4>
 
-            {order.products?.map(
-              (product, index) => (
-
-                <p key={index}>
-
-                  {product.name}
-                  {" × "}
-                  {product.qty}
-
-                </p>
-
-              )
-            )}
+            {order.products?.map((p, index) => (
+  <p key={index}>
+    🧾 {p.name}
+    {" | "}
+    {p.size}
+    {" | "}
+    {p.flavor}
+    {" × "}
+    {p.qty}
+  </p>
+))}
+            
 
             <hr />
 
