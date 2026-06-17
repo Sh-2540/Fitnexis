@@ -1,148 +1,57 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 
-export default function Navbar({ cartCount, openCart }) {
+export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const menuItems = [
+    { name: "Home", path: "/" },
+    { name: "Shop", path: "/shop" },
+    { name: "Products", path: "/products" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
+    { name: "Track Order", path: "/track-order" }
+  ];
+
   return (
-    <>
-      <nav className="navbar">
+    <nav className="navbar">
 
-        {/* Logo */}
-        <h1 className="logo">Fitnexis</h1>
+      {/* LOGO */}
+      <h2 className="logo">FITNEXIS</h2>
 
-        {/* Desktop Navigation */}
-        <ul className="nav-links">
-          <li>
-            <Link to="/">Home</Link>
+      {/* DESKTOP MENU */}
+      <ul className="desktop-menu">
+        {menuItems.map((item, i) => (
+          <li key={i}>
+            <Link to={item.path}>{item.name}</Link>
           </li>
+        ))}
+      </ul>
 
-          <li>
-            <Link to="/shop">Shop</Link>
-          </li>
+      {/* HAMBURGER ICON */}
+      <button className="menu-btn" onClick={() => setMenuOpen(true)}>
+        <FaBars />
+      </button>
 
-          <li>
-            <Link to="/products">Products</Link>
-          </li>
+      {/* MOBILE MENU */}
+      <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
 
-          <li>
-            <Link to="/about">About</Link>
-          </li>
+        {/* CLOSE ICON */}
+        <button className="close-btn" onClick={() => setMenuOpen(false)}>
+          <FaTimes />
+        </button>
 
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-
-          <li>
-            <Link to="/track-order">Track_Order</Link>
-          </li>
-        </ul>
-
-        {/* Right Side */}
-        <div className="nav-right">
-
-  {/* Mobile Cart Icon */}
-  <button
-    className="mobile-cart-btn"
-    onClick={openCart}
-  >
-    <FaShoppingCart />
-    {cartCount > 0 && (
-      <span className="cart-badge">
-        {cartCount}
-      </span>
-    )}
-  </button>
-
-  {/* Desktop Cart Button */}
-  <button
-    className="primary-btn cart-btn"
-    onClick={openCart}
-  >
-    Cart ({cartCount})
-  </button>
-
-  {/* Hamburger */}
-  <button
-    className={`hamburger ${menuOpen ? "open" : ""}`}
-    onClick={() => setMenuOpen(!menuOpen)}
-  >
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-</div>
-      </nav>
-
-  {/* Dark Overlay */}
-{menuOpen && (
-
-<div
-  className="mobile-overlay"
-  onClick={() => setMenuOpen(false)}
-></div>
-)}
-      {/* Mobile Drawer */}
-      <div
-        className={`mobile-drawer ${menuOpen ? "active" : ""}`}
-      >
-
-        <ul className="mobile-links">
-
-          <li>
-            <Link to="/home" onClick={() => setMenuOpen(false)}>
-              Home
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/shop" onClick={() => setMenuOpen(false)}>
-              Shop
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/products" onClick={() => setMenuOpen(false)}>
-              Products
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/about" onClick={() => setMenuOpen(false)}>
-              Contact
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              About
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/track-order" onClick={() => setMenuOpen(false)}>
-              Track_Order
-            </Link>
-          </li>
-
-          {/* Mobile Cart */}
-          <li>
-            <button
-              className="primary-btn"
-              onClick={() => {
-                openCart();
-                setMenuOpen(false);
-              }}
-            >
-              Cart ({cartCount})
-            </button>
-          </li>
-
+        <ul>
+          {menuItems.map((item, i) => (
+            <li key={i} onClick={() => setMenuOpen(false)}>
+              <Link to={item.path}>{item.name}</Link>
+            </li>
+          ))}
         </ul>
 
       </div>
-    </>
+
+    </nav>
   );
 }
