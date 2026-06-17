@@ -25,7 +25,7 @@ import Success from "./pages/Success";
 import AdminOrders from "./pages/AdminOrders";
 import TrackOrder from "./pages/TrackOrder";
 import AdminLogin from "./pages/AdminLogin";
-import items from "razorpay/dist/types/items";
+
 export default function App() {
 
   /* =========================
