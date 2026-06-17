@@ -204,15 +204,7 @@ switch (status) {
 
 return (
 
-<div
-  style={{
-    padding: "100px 20px",
-    background: "#000",
-    color: "#fff",
-    minHeight: "100vh"
-  }}
->
-
+<div  className="track-order-page" >
   <h1>
     📦 Track Your Orders
   </h1>
@@ -245,15 +237,8 @@ return (
 
       <div
         key={order.id}
-        style={{
-          border:
-            "1px solid #444",
-          padding: "15px",
-          marginTop: "20px",
-          borderRadius: "10px",
-          background: "#111"
-        }}
-      >
+       className="track-order-card"
+       >
 
         <h3>
           {getStatus(

@@ -232,12 +232,7 @@ function AdminOrders() {
   return (
 
     <div
-      style={{
-        padding: "100px 30px",
-        color: "white",
-        background: "#000",
-        minHeight: "100vh"
-      }}
+      className="admin-orders-page"
     >
 
       <h1>
@@ -270,14 +265,7 @@ function AdminOrders() {
 
           <div
             key={order.id}
-            style={{
-              background: "#111",
-              padding: "20px",
-              marginBottom: "20px",
-              borderRadius: "12px",
-              border:
-                "1px solid #333"
-            }}
+            className="admin-order-card"
           >
 
             <h3>
