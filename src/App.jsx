@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import {
   Routes,
-  Route
+  Route,
 } from "react-router-dom";
 
 import "./style.css";
@@ -25,8 +25,6 @@ import Success from "./pages/Success";
 import AdminOrders from "./pages/AdminOrders";
 import TrackOrder from "./pages/TrackOrder";
 import AdminLogin from "./pages/AdminLogin";
-
-
 export default function App() {
 
   /* =========================
@@ -42,21 +40,26 @@ export default function App() {
      ADD TO CART
   ========================= */
 
+
   const addToCart = (product) => {
 
     setCart((prev) => {
 
       const existing =
-        prev.find(
-          (item) =>
-            item.id === product.id
-        );
+  prev.find(
+    (item) =>
+      item.id === product.id &&
+      item.flavor === product.flavor &&
+      item.size === product.size
+  );
 
       if (existing) {
 
         return prev.map((item) =>
 
-          item.id === product.id
+        item.id === product.id &&
+        item.flavor === product.flavor &&
+        item.size === product.size
 
             ? {
                 ...item,
@@ -71,7 +74,6 @@ export default function App() {
         ...prev,
         {
           ...product,
-          qty: 1
         }
       ];
     });
@@ -101,6 +103,7 @@ export default function App() {
       {/* =========================
           NAVBAR
       ========================= */}
+      
 
       <Navbar
 
