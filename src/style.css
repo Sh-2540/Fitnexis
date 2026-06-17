@@ -2772,18 +2772,21 @@ html, body {
    BRAND LOGO
 ========================= */
 .logo {
-  margin: 20px ;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.6rem;
-  letter-spacing: 0.04em;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-  background: linear-gradient(135deg, #fff 40%, var(--accent));
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+.logo::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #ff6a00;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(255, 106, 0, 0.7);
 }
 
 
