@@ -62,6 +62,11 @@ function ProductDetails({ addToCart }) {
 
   const [activeTab, setActiveTab] =
     useState("overview");
+    const originalPrice = selectedVariant?.price || 0;
+
+    const discountedPrice = Math.round(
+      originalPrice * 0.8
+    );  
 
   return (
 
@@ -127,8 +132,37 @@ function ProductDetails({ addToCart }) {
           </h1>
 
           <h2 className="product-price">
-            ₹{selectedVariant?.price}
-          </h2>
+
+  <span
+    style={{
+      textDecoration: "line-through",
+      color: "#888",
+      marginRight: "10px"
+    }}
+  >
+    ₹{originalPrice}
+  </span>
+
+  <span
+    style={{
+      color: "#00ff88",
+      fontWeight: "700"
+    }}
+  >
+    ₹{discountedPrice}
+  </span>
+
+  <span
+    style={{
+      color: "#ff4d4d",
+      marginLeft: "10px",
+      fontSize: "14px"
+    }}
+  >
+    20% OFF
+  </span>
+
+</h2>
 
           <p className="product-description">
 
@@ -262,7 +296,7 @@ function ProductDetails({ addToCart }) {
       addToCart({
         id: product.id,
         name: product.name,
-        price: selectedVariant?.price,
+        price: discountedPrice,
         image: `/${images[0]}`,
         qty: quantity,
         flavor: selectedFlavor,
