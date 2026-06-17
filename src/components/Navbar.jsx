@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
-import "./Navbar.css";
+
 
 export default function Navbar({ cartCount = 0 }) {
   const [menuOpen, setMenuOpen] = useState(false);
