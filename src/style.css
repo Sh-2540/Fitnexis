@@ -2407,26 +2407,25 @@ html, body {
   height:100vh;
   overflow:hidden;
 }
-
-.hero-slider{
-  display:flex;
-  width:300%;
-  height:100%;
-  animation:slideHero 15s infinite;
+.hero-slider {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  animation: slideHero 15s ease-in-out infinite;
 }
 
-.hero-slide{
-  width:100%;
-  flex-shrink:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background-size:cover;
-  background-position:center;
-  padding:0 8%;
-  text-align:center;
+.hero-slide {
+  flex: 0 0 33.3333%;
+  max-width: 33.3333%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  padding: 0 8%;
+  text-align: center;
 }
-
 .hero-content{max-width:850px}
 
 .hero-tag{
