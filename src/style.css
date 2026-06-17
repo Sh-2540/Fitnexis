@@ -2766,113 +2766,100 @@ html, body {
   transition:.3s;
 }
 
-/* ORDER CARDS */
+/* =========================
+   TRACK ORDER PAGE
+========================= */
 
-.track-order-card,
-.admin-order-card{
+.track-order-page{
+  min-height:100vh;
+  background:#000;
+  color:#fff;
+  padding:180px 24px 40px;
+}
+
+.track-order-page h1{
+  font-size:2rem;
+  margin-bottom:25px;
+}
+
+.track-order-page input{
+  width:350px;
+  max-width:100%;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid #333;
+  background:#111;
+  color:#fff;
+  outline:none;
+}
+
+.track-order-page input:focus{
+  border-color:#666;
+}
+
+.track-order-page button{
+  padding:14px 22px;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.track-order-card{
   background:#111;
   border:1px solid #222;
   border-radius:18px;
   padding:22px;
   margin-top:20px;
-  box-shadow:
-  0 0 0 1px rgba(255,255,255,.03),
-  0 10px 30px rgba(0,0,0,.35);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
 
-.track-order-card:hover,
-.admin-order-card:hover{
-  transform:translateY(-2px);
-  transition:.25s;
-}
-
-/* STATUS */
-
-.track-order-card h3,
-.admin-order-card h3{
+.track-order-card h3{
   margin-bottom:12px;
 }
 
-/* PRODUCTS */
-
-.track-order-card h4,
-.admin-order-card h4{
-  margin-top:18px;
-  margin-bottom:12px;
+.track-order-card h4{
+  margin-top:16px;
 }
 
-.track-order-card p,
-.admin-order-card p{
-  line-height:1.7;
+.track-order-card p{
   color:#d7d7d7;
+  line-height:1.7;
 }
 
-/* REQUEST BOXES */
+@media(max-width:768px){
 
-.track-order-card > div,
-.admin-order-card > div{
-  margin-top:12px;
+  .track-order-page{
+    padding:220px 14px 30px;
+  }
+
+  .track-order-page input{
+    width:100%;
+    margin-bottom:10px;
+  }
+
+  .track-order-page button{
+    width:100%;
+  }
+
+  .track-order-card{
+    padding:16px;
+  }
 }
+/* =========================
+   ADMIN ORDERS PAGE
+========================= */
 
-.cancel-box,
-.return-box{
-  background:#1a1a1a;
-  border:1px solid #333;
-  padding:12px;
-  border-radius:12px;
-}
-
-/* BUTTONS */
-
-.cancel-btn{
-  background:#d62828;
+.admin-orders-page{
+  min-height:100vh;
+  background:#000;
   color:#fff;
+  padding:140px 24px 40px;
 }
 
-.cancel-btn:hover{
-  opacity:.9;
+.admin-orders-page h1{
+  margin-bottom:20px;
 }
-
-.return-btn{
-  background:#f77f00;
-  color:#fff;
-}
-
-.return-btn:hover{
-  opacity:.9;
-}
-
-.approve-btn{
-  background:#2a9d8f;
-  color:#fff;
-  border:none;
-  padding:10px 14px;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-.reject-btn{
-  background:#d62828;
-  color:#fff;
-  border:none;
-  padding:10px 14px;
-  border-radius:10px;
-  cursor:pointer;
-  margin-left:10px;
-}
-
-/* SELECT */
-
-.admin-orders-page select{
-  padding:12px;
-  border-radius:10px;
-  border:none;
-  background:#222;
-  color:#fff;
-  margin-top:8px;
-}
-
-/* DASHBOARD */
 
 .admin-orders-page h2{
   background:#111;
@@ -2882,40 +2869,52 @@ html, body {
   margin-bottom:12px;
 }
 
-/* MOBILE */
+.admin-order-card{
+  background:#111;
+  border:1px solid #222;
+  border-radius:18px;
+  padding:22px;
+  margin-top:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
 
-@media (max-width:768px){
+.admin-order-card p{
+  color:#d7d7d7;
+  line-height:1.7;
+}
 
-  .track-order-page,
+.admin-order-card select{
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  background:#222;
+  color:#fff;
+}
+
+.admin-order-card button{
+  padding:10px 14px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+@media(max-width:768px){
+
   .admin-orders-page{
-    padding:90px 14px 30px;
+    padding:180px 14px 30px;
   }
 
-  .track-order-page h1,
-  .admin-orders-page h1{
-    font-size:1.6rem;
-  }
-
-  .track-order-card,
   .admin-order-card{
     padding:16px;
-    border-radius:14px;
   }
 
-  .track-order-page button,
-  .approve-btn,
-  .reject-btn{
+  .admin-order-card select{
     width:100%;
-    margin-top:10px;
-    margin-left:0;
   }
 
-  .track-order-page input{
+  .admin-order-card button{
     width:100%;
-    margin-bottom:10px;
-  }
-
-  .admin-orders-page select{
-    width:100%;
+    margin-left:0 !important;
   }
 }
