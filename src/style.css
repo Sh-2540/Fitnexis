@@ -2773,16 +2773,16 @@ html, body {
 ========================= */
 
 .logo {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 800;
-  letter-spacing: 1px;
-  color: #ffffff;
-  cursor: pointer;
+  letter-spacing: 2px;
+  color: #fff;
+  text-transform:uppercase;
 }
 
 .logo span {
   color: #ff6a00;
-  text-shadow: 0 0 15px rgba(255, 106, 0, 0.5);
+  text-shadow: 0 0 10px rgba(255, 106, 0, 0.6), 0 0 20px rgba(255, 106, 0, 0.4)
 }
 
 /* =========================
