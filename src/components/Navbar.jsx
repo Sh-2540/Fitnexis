@@ -33,6 +33,10 @@ export default function Navbar({ cartCount, openCart }) {
           <li>
             <Link to="/contact">Contact</Link>
           </li>
+
+          <li>
+            <Link to="/track-order">Track_Order</Link>
+          </li>
         </ul>
 
         {/* Right Side */}
