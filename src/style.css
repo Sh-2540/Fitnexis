@@ -2407,20 +2407,22 @@ html, body {
   height:100vh;
   overflow:hidden;
 }
-.hero-slider {
+.hero-slider{
   display: flex;
-  width: 300%;
   height: 100%;
   animation: slideHero 15s ease-in-out infinite;
 }
 
-.hero-slide {
-  flex: 0 0 33.3333%;
-  max-width: 33.3333%;
+.hero-slide{
+  min-width: 100%;
+  width: 100%;
   height: 100%;
+  flex-shrink: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   background-size: cover;
   background-position: center;
   padding: 0 8%;
@@ -2473,8 +2475,8 @@ html, body {
 
 @keyframes slideHero{
   0%,30%{transform:translateX(0)}
-  35%,65%{transform:translateX(-33.3333%)}
-  70%,95%{transform:translateX(-66.6667%)}
+  35%,65%{transform:translateX(-100%)}
+  70%,95%{transform:translateX(-200%)}
   100%{transform:translateX(0)}
 }
 
