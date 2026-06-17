@@ -10,6 +10,12 @@ export default function CartSidebar({
 }) {
   const navigate = useNavigate();
 
+  // ✅ remove function
+  const removeFromCart = (indexToRemove) => {
+    const updatedCart = cart.filter((_, index) => index !== indexToRemove);
+    setCart(updatedCart);
+  };
+
   return (
     <div className={cartOpen ? "cart-sidebar active" : "cart-sidebar"}>
       <div className="cart-top">
@@ -25,7 +31,17 @@ export default function CartSidebar({
         ) : (
           cart.map((item, index) => (
             <div className="cart-item" key={index}>
+              
+              {/* ✅ REMOVE BUTTON */}
+              <button
+                className="remove-btn"
+                onClick={() => removeFromCart(index)}
+              >
+                ×
+              </button>
+
               <img src={item.image} alt={item.name} />
+
               <div>
                 <h4>{item.name}</h4>
                 <p>₹{item.price} × {item.qty}</p>
