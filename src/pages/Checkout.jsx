@@ -9,6 +9,7 @@ function Checkout({ cart }) {
   const [discount, setDiscount] = useState(0);
 
   // BASE PRICE (ALREADY 20% OFF PRICE)
+  console.log(cart);
   const baseSubtotal = cart.reduce(
     (total, item) => total + item.price * item.qty,
     0
