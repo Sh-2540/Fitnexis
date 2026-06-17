@@ -2385,3 +2385,249 @@ html, body {
     padding: 0 18px;
   }
 }
+/* =========================
+   HOME.CSS - Premium Fitnexis
+========================= */
+
+:root{
+  --bg:#070707;
+  --card:#121212;
+  --text:#ffffff;
+  --muted:#b8b8b8;
+  --accent:#ff7a00;
+  --accent2:#ff5500;
+  --border:rgba(255,255,255,.08);
+}
+
+*{box-sizing:border-box}
+
+.hero{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
+
+.hero-slider{
+  display:flex;
+  width:300%;
+  height:100%;
+  animation:slideHero 15s infinite;
+}
+
+.hero-slide{
+  width:100%;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background-size:cover;
+  background-position:center;
+  padding:0 8%;
+  text-align:center;
+}
+
+.hero-content{max-width:850px}
+
+.hero-tag{
+  color:var(--accent);
+  font-weight:800;
+  letter-spacing:3px;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  color:var(--text);
+  font-size:clamp(3.4rem,8vw,6.8rem);
+  line-height:.95;
+  font-weight:900;
+  margin:0;
+}
+
+.hero h1 span{color:var(--accent)}
+
+.hero-description{
+  color:#ddd;
+  font-size:1.2rem;
+  line-height:1.7;
+  max-width:650px;
+  margin:22px auto 0;
+}
+
+.hero-buttons{margin-top:34px}
+
+.primary-btn{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  padding:14px 28px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.primary-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 28px rgba(255,122,0,.35);
+}
+
+@keyframes slideHero{
+  0%,30%{transform:translateX(0)}
+  35%,65%{transform:translateX(-33.3333%)}
+  70%,95%{transform:translateX(-66.6667%)}
+  100%{transform:translateX(0)}
+}
+
+.best-sellers,
+.why-section{
+  background:var(--bg);
+  color:var(--text);
+  padding:100px 8%;
+}
+
+.best-header,
+.why-header{
+  text-align:center;
+  margin-bottom:48px;
+}
+
+.best-subtitle{
+  color:var(--accent);
+  font-weight:800;
+  letter-spacing:3px;
+}
+
+.best-header h2,
+.why-header h2{
+  font-size:clamp(2.4rem,5vw,4.2rem);
+  margin:14px 0;
+  font-weight:900;
+}
+
+.best-header span,
+.why-header span{
+  color:var(--accent);
+}
+
+.best-text{
+  color:var(--muted);
+  max-width:650px;
+  margin:auto;
+  line-height:1.8;
+}
+
+.best-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
+
+.best-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  background:var(--card);
+  border:1px solid var(--border);
+  transition:.35s;
+}
+
+.best-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+  border-color:rgba(255,122,0,.35);
+}
+
+.best-card img{
+  width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  display:block;
+}
+
+.card-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:24px;
+  background:linear-gradient(to top,rgba(0,0,0,.92),rgba(0,0,0,.25),transparent);
+}
+
+.card-overlay h3{
+  margin:0 0 10px;
+  font-size:1.5rem;
+}
+
+.card-overlay p{
+  color:#ddd;
+  line-height:1.6;
+  margin-bottom:18px;
+}
+
+.card-overlay button{
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;
+  padding:11px 18px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.card-badge{
+  position:absolute;
+  top:18px;
+  left:18px;
+  z-index:2;
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:.75rem;
+  font-weight:800;
+}
+
+.hot{background:#ff3d00;color:#fff}
+.bestseller{background:#ff7a00;color:#fff}
+.new{background:#00b050;color:#fff}
+
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+
+.why-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:34px 24px;
+  transition:.3s;
+}
+
+.why-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,122,0,.35);
+}
+
+.why-card h3{
+  margin-top:0;
+  margin-bottom:12px;
+}
+
+.why-card p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+@media(max-width:992px){
+  .best-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:600px){
+  .hero{height:85vh}
+  .hero h1{font-size:3.2rem}
+  .hero-description{font-size:1rem}
+  .why-grid{grid-template-columns:1fr}
+}
