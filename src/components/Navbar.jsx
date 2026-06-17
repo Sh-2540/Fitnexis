@@ -121,6 +121,12 @@ export default function Navbar({ cartCount, openCart }) {
             </Link>
           </li>
 
+          <li>
+            <Link to="/track-order" onClick={() => setMenuOpen(false)}>
+              Track_Order
+            </Link>
+          </li>
+
           {/* Mobile Cart */}
           <li>
             <button
