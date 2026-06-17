@@ -78,8 +78,17 @@ function Checkout({ cart }) {
             <div key={i} className="item">
               <img src={item.image} alt={item.name} />
               <div>
-                <h4>{item.name}</h4>
-                <p>Qty: {item.qty}</p>
+              <h4>{item.name}</h4>
+
+{item.flavor && (
+  <p>Flavor: {item.flavor}</p>
+)}
+
+{item.size && (
+  <p>Size: {item.size}</p>
+)}
+
+<p>Qty: {item.qty}</p>
               </div>
               <span>₹{item.price * item.qty}</span>
             </div>
