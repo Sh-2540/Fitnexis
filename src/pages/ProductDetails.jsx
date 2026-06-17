@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import products from "../data/products";
 
 import "./ProductDetails.css";
 
+
 function ProductDetails({ addToCart }) {
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
