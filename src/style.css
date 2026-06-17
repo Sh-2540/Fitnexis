@@ -2937,3 +2937,14 @@ html, body {
 .remove-btn:hover {
   transform: scale(1.2);
 }
+@media (max-width: 768px) {
+  .navbar ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .track-order {
+    display: block !important;
+    padding: 10px 0;
+  }
+}
