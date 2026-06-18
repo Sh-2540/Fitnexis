@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
 
 
-export default function Navbar({ cartCount = 0 }) {
+export default function Navbar({ cartCount = 0 , openCart,}) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -30,7 +30,7 @@ export default function Navbar({ cartCount = 0 }) {
       <div className="nav-right">
       <button
   className="cart-icon"
-  onClick={() => setCartOpen(true)}
+  onClick={openCart}
 >
   <FaShoppingCart />
   <span className="cart-count">{cartCount}</span>
