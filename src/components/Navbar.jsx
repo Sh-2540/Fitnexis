@@ -28,11 +28,13 @@ export default function Navbar({ cartCount = 0 }) {
 
       {/* CART ICON */}
       <div className="nav-right">
-        <Link to="/cart" className="cart-icon">
-          <FaShoppingCart />
-          <span className="cart-count">{cartCount}</span>
-        </Link>
-
+      <button
+  className="cart-icon"
+  onClick={() => setCartOpen(true)}
+>
+  <FaShoppingCart />
+  <span className="cart-count">{cartCount}</span>
+</button>
         {/* HAMBURGER */}
         <div className="hamburger" onClick={toggleMenu}>
           {menuOpen ? <FaTimes /> : <FaBars />}
