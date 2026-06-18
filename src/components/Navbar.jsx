@@ -32,7 +32,7 @@ export default function Navbar({ cartCount = 0 , openCart,}) {
   className="cart-icon"
   onClick={openCart}
 >
-  <FaShoppingCart />
+  <FaShoppingCart/>
   <span className="cart-count">{cartCount}</span>
 </button>
         {/* HAMBURGER */}
