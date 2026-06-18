@@ -2633,3 +2633,13 @@ html, body {
   .hero-description{font-size:1rem}
   .why-grid{grid-template-columns:1fr}
 }
+.cart-icon svg {
+  color: #ffffff !important;
+  font-size: 24px;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.cart-icon {
+  color: #ffffff;
+}
