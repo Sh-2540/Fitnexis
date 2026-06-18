@@ -2633,13 +2633,45 @@ html, body {
   .hero-description{font-size:1rem}
   .why-grid{grid-template-columns:1fr}
 }
-.cart-icon svg {
-  color: #ffffff !important;
-  font-size: 24px;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
+/* FORCE CART ICON VISIBILITY */
 
 .cart-icon {
-  color: #ffffff;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  position: relative;
+}
+
+.cart-icon svg {
+  color: #ff7a00 !important;
+  font-size: 26px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+
+  background: #ff5a1f;
+  color: white;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 10px;
+  font-weight: 700;
 }
