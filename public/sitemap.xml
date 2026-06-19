@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+ xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://fitnexis.vercel.app/</loc>
+  </url>
+
+  <url>
+    <loc>https://fitnexis.vercel.app/shop</loc>
+  </url>
+
+  <url>
+    <loc>https://fitnexis.vercel.app/products</loc>
+  </url>
+
+  <url>
+    <loc>https://fitnexis.vercel.app/about</loc>
+  </url>
+
+  <url>
+    <loc>https://fitnexis.vercel.app/contact</loc>
+  </url>
+
+  <url>
+    <loc>https://fitnexis.vercel.app/track-order</loc>
+  </url>
+
+</urlset>
