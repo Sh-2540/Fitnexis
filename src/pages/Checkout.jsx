@@ -22,11 +22,7 @@ function Checkout({ cart }) {
   // APPLY COUPON (ON BASE PRICE ONLY)
   const applyCoupon = () => {
     const code = coupon.trim().toUpperCase();
-    console.log("Coupon:",code);
-   
-      console.log(cart);
-      return;
-    }
+  
     
   
     const coupons = {
@@ -141,5 +137,6 @@ function Checkout({ cart }) {
       </div>
     </div>
   );
+          }
 
 export default Checkout;
