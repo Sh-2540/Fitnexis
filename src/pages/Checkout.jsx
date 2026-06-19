@@ -23,15 +23,11 @@ function Checkout({ cart }) {
   const applyCoupon = () => {
     const code = coupon.trim().toUpperCase();
     console.log("Coupon:",code);
-  
-    if (code === "GOLDEN") {
-  
-      // Make final payable amount ₹1
-      setDiscount(baseSubtotal + shipping - 1);
    
       console.log(cart);
       return;
     }
+    {
   
     const coupons = {
       NEXIS10: 0.10,

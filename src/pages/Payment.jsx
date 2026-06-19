@@ -95,7 +95,7 @@ function Payment() {
       }
 
       // SAFE AMOUNT
-      const amount = 100;
+      const amount = Math.round(Number(finalTotal ||0)* 100);
         
 
       console.log(
