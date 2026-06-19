@@ -27,7 +27,7 @@ function Checkout({ cart }) {
       console.log(cart);
       return;
     }
-    {
+    
   
     const coupons = {
       NEXIS10: 0.10,
@@ -141,6 +141,5 @@ function Checkout({ cart }) {
       </div>
     </div>
   );
-}
 
 export default Checkout;
