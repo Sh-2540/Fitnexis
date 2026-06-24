@@ -242,7 +242,11 @@ function AdminOrders() {
       <h2>
         Total Orders:
         {" "}
-        {orders.length}
+        {
+  orders.filter(
+    order => order.status !== "Delivered"
+  ).length
+}
       </h2>
 
       <h2>
@@ -252,21 +256,24 @@ function AdminOrders() {
       </h2>
 
       <br />
+      {orders.filter(
+  order => order.status !== "Delivered"
+).length === 0 ? (
 
-      {orders.length === 0 ? (
+  <p>No Orders Found</p>
 
-        <p>
-          No Orders Found
-        </p>
+) : (
 
-      ) : (
+  orders
+    .filter(
+      order => order.status !== "Delivered"
+    )
+    .map(order => (
 
-        orders.map(order => (
-
-          <div
-            key={order.id}
-            className="admin-order-card"
-          >
+      <div
+        key={order.id}
+        className="admin-order-card"
+      >
 
             <h3>
               {order.customer?.name}
