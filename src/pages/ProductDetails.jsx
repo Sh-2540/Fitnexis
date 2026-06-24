@@ -6,7 +6,7 @@ import products from "../data/products";
 
 import "./ProductDetails.css";
 import { useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs,addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 
@@ -18,6 +18,9 @@ function ProductDetails({ addToCart }) {
   const product = products.find(
     (p) => p.id === Number(id)
   );
+  const [reviewName, setReviewName] = useState("");
+  const [reviewText, setReviewText] = useState("");
+  const [reviewRating, setReviewRating] = useState(5); 
 
   const [reviews, setReviews] = useState([]);
 
@@ -52,6 +55,39 @@ function ProductDetails({ addToCart }) {
     );
 
   }
+  const submitReview = async () => {
+
+    if (!reviewName || !reviewText) {
+      alert("Please fill all fields");
+      return;
+    }
+  
+    try {
+  
+      await addDoc(
+        collection(db, "reviews"),
+        {
+          productId: String(product.id),
+          name: reviewName,
+          review: reviewText,
+          rating: reviewRating,
+          createdAt: Date.now()
+        }
+      );
+  
+      alert("Review submitted successfully");
+  
+      setReviewName("");
+      setReviewText("");
+      setReviewRating(5);
+  
+      window.location.reload();
+  
+    } catch (err) {
+      console.error(err);
+      alert("Failed to submit review");
+    }
+  };
 
   /* IMAGES */
 
@@ -565,13 +601,54 @@ function ProductDetails({ addToCart }) {
   )}
 
   {/* REVIEWS TAB */}
-
-  {activeTab === "reviews" && (
-
-    <>
+  
 
 {activeTab === "reviews" && (
   <>
+
+<div className="review-form">
+
+<h3>Write a Review</h3>
+
+<input
+  type="text"
+  placeholder="Your Name"
+  value={reviewName}
+  onChange={(e) =>
+    setReviewName(e.target.value)
+  }
+/>
+
+<select
+  value={reviewRating}
+  onChange={(e) =>
+    setReviewRating(Number(e.target.value))
+  }
+>
+  <option value="5">⭐⭐⭐⭐⭐</option>
+  <option value="4">⭐⭐⭐⭐</option>
+  <option value="3">⭐⭐⭐</option>
+  <option value="2">⭐⭐</option>
+  <option value="1">⭐</option>
+</select>
+
+<textarea
+  placeholder="Write your review..."
+  value={reviewText}
+  onChange={(e) =>
+    setReviewText(e.target.value)
+  }
+/>
+
+<button
+  className="primary-btn"
+  onClick={submitReview}
+>
+  Submit Review
+</button>
+
+</div>
+
     {reviews.length > 0 ? (
       <div className="reviews">
         {reviews.map((review, i) => (
@@ -597,9 +674,6 @@ function ProductDetails({ addToCart }) {
   </>
 )}
 
-    </>
-
-  )}
 
 </div>
 {/* EXTRA INFO CARDS */}
