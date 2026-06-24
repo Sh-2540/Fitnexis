@@ -5,6 +5,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import products from "../data/products";
 
 import "./ProductDetails.css";
+import { useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
 
 function ProductDetails({ addToCart }) {
@@ -15,6 +18,26 @@ function ProductDetails({ addToCart }) {
   const product = products.find(
     (p) => p.id === Number(id)
   );
+
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    const loadReviews = async () => {
+      const snap = await getDocs(
+        collection(db, "reviews")
+      );
+  
+      const firebaseReviews = snap.docs
+        .map(doc => doc.data())
+        .filter(
+          r => r.productId === String(product.id)
+        );
+  
+      setReviews(firebaseReviews);
+    };
+  
+    loadReviews();
+  }, [product.id]);
 
   if (!product) {
 
@@ -547,42 +570,32 @@ function ProductDetails({ addToCart }) {
 
     <>
 
-      {product.reviews ? (
+{activeTab === "reviews" && (
+  <>
+    {reviews.length > 0 ? (
+      <div className="reviews">
+        {reviews.map((review, i) => (
+          <div
+            className="review-card"
+            key={i}
+          >
+            <h4>{review.name}</h4>
 
-        <div className="reviews">
+            <p>
+              {"⭐".repeat(review.rating)}
+            </p>
 
-          {product.reviews.map(
-            (review, i) => (
-
-              <div
-                className="review-card"
-                key={i}
-              >
-
-                <h4>{review.user}</h4>
-
-                <p>
-                  {"⭐".repeat(
-                    review.rating
-                  )}
-                </p>
-
-                <span>
-                  {review.comment}
-                </span>
-
-              </div>
-
-            )
-          )}
-
-        </div>
-
-      ) : (
-
-        <p>No reviews yet.</p>
-
-      )}
+            <span>
+              {review.review}
+            </span>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p>No reviews yet.</p>
+    )}
+  </>
+)}
 
     </>
 
